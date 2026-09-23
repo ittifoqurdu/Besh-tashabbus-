@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Besh muhim tashabbus platformasida ro'yxatdan o'tish.">
+<title>Ro'yxatdan o'tish | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="">
+
+<div id="app-header"></div>
+
+<main>
+  <div class="auth">
+    <aside class="auth__side">
+      <img src="../../assets/img/logo/besh-tashabbus.svg" alt="Besh muhim tashabbus" width="78" height="78" class="float">
+      <h2>Platformaga qo'shiling</h2>
+      <p>Ro'yxatdan o'tish bepul. Ariza fakultet tyutori tomonidan 1 ish kunida tasdiqlanadi.</p>
+      <ul class="auth__list">
+        <li><i data-ico="check-circle"></i><span>Barcha tanlov va tadbirlarga kirish huquqi</span></li>
+        <li><i data-ico="check-circle"></i><span>Elektron kutubxonaning to'liq fondi</span></li>
+        <li><i data-ico="check-circle"></i><span>Shaxsiy portfolio va sertifikatlar</span></li>
+        <li><i data-ico="check-circle"></i><span>Bepul kasb-hunar va IT kurslari</span></li>
+      </ul>
+      <div class="alert" style="background:rgba(255,255,255,.14);color:#fff;margin-top:8px">
+        <i data-ico="lock"></i><span>Ma'lumotlaringiz maxfiy saqlanadi va uchinchi shaxslarga berilmaydi.</span>
+      </div>
+    </aside>
+
+    <section class="auth__form">
+      <div class="auth__form-inner" data-reveal="right">
+        <h2>Ro'yxatdan o'tish</h2>
+        <p class="muted small mt-1">Quyidagi maydonlarni to'ldiring.</p>
+
+        <form class="form mt-3" id="regForm">
+          <div class="row-2">
+            <div class="field">
+              <label for="ism">Ism <span class="req">*</span></label>
+              <input class="input" id="ism" type="text" required placeholder="Dilnoza">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="fam">Familiya <span class="req">*</span></label>
+              <input class="input" id="fam" type="text" required placeholder="Ro'zmetova">
+              <span class="field__err"></span>
+            </div>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="sid">Talabalik ID <span class="req">*</span></label>
+              <input class="input" id="sid" type="text" required placeholder="2024001234">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="tel">Telefon <span class="req">*</span></label>
+              <input class="input" id="tel" type="tel" required placeholder="+998 __ ___ __ __">
+              <span class="field__err"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="mail">Email <span class="req">*</span></label>
+            <input class="input" id="mail" type="email" required placeholder="ism@urdu.uz">
+            <span class="field__err"></span>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="fak">Fakultet <span class="req">*</span></label>
+              <select class="select" id="fak" required>
+                <option value="">Tanlang</option>
+                <option>Filologiya fakulteti</option>
+                <option>Fizika-matematika fakulteti</option>
+                <option>Axborot texnologiyalari fakulteti</option>
+                <option>Xorijiy tillar fakulteti</option>
+                <option>Pedagogika fakulteti</option>
+                <option>Tarix fakulteti</option>
+                <option>Iqtisodiyot fakulteti</option>
+                <option>Kimyo-biologiya fakulteti</option>
+              </select>
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="kurs">Kurs <span class="req">*</span></label>
+              <select class="select" id="kurs" required>
+                <option value="">Tanlang</option>
+                <option>1-kurs</option><option>2-kurs</option><option>3-kurs</option>
+                <option>4-kurs</option><option>Magistratura</option>
+              </select>
+              <span class="field__err"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Qaysi tashabbuslar sizni qiziqtiradi?</label>
+            <div class="flex flex-wrap" id="temaChips" style="gap:8px"></div>
+          </div>
+
+          <div class="row-2">
+            <div class="field">
+              <label for="pwd">Parol <span class="req">*</span></label>
+              <input class="input" id="pwd" type="password" required placeholder="••••••••">
+              <span class="field__err"></span>
+            </div>
+            <div class="field">
+              <label for="pwd2">Parolni tasdiqlang <span class="req">*</span></label>
+              <input class="input" id="pwd2" type="password" required data-match="#pwd" placeholder="••••••••">
+              <span class="field__err"></span>
+            </div>
+          </div>
+
+          <label class="check">
+            <input type="checkbox" required>
+            <span>Men <a href="#" style="color:var(--brand-600);font-weight:650">foydalanish shartlari</a> va
+            <a href="#" style="color:var(--brand-600);font-weight:650">maxfiylik siyosati</a> bilan tanishdim va roziman.</span>
+          </label>
+
+          <button class="btn btn--primary btn--lg btn--block" type="submit"><i data-ico="user-plus"></i> Ro'yxatdan o'tish</button>
+        </form>
+
+        <p class="small muted center mt-3">
+          Hisobingiz bormi?
+          <a href="kirish.html" style="color:var(--brand-600);font-weight:700">Tizimga kiring</a>
+        </p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  document.getElementById("temaChips").innerHTML = DB.tashabbuslar.map(function (t) {
+    return '<button class="chip js-tema" type="button" data-id="' + t.id + '">' +
+      '<i data-ico="' + t.icon + '"></i>' + t.nom + '</button>';
+  }).join("");
+});
+
+document.addEventListener("click", function (e) {
+  var c = e.target.closest(".js-tema");
+  if (c) c.classList.toggle("is-active");
+});
+
+UI.initForm("#regForm", function () {
+  UI.toast("Arizangiz yuborildi! Tyutor tasdig'ini kuting.", "check-circle");
+  setTimeout(function () { location.href = "kirish.html"; }, 1400);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Talabalar va fakultetlar faollik reytingi.">
+<title>Reytinglar | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="reyting">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Reytinglar</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="medal"></i> Avgust 2026 holatiga</span>
+      <h1 class="mt-2" data-reveal data-delay="1">Faollik <span class="gradient-text">reytingi</span></h1>
+      <p class="lead mt-1" style="max-width:720px" data-reveal data-delay="2">
+        Tanlovlar, tadbirlar, kitobxonlik va volontyorlik bo'yicha to'plangan ballar asosida shakllantiriladi.
+      </p>
+    </div>
+  </section>
+
+  <!-- TOP 3 -->
+  <section class="section--tight">
+    <div class="wrap grid g-3" id="top3"></div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid" style="grid-template-columns:1.3fr .8fr;gap:24px;align-items:start">
+      <div class="panel" data-reveal="left">
+        <div class="panel__head"><i data-ico="list"></i><h3>Talabalar reytingi</h3>
+          <div class="search-box" style="max-width:230px;margin-left:auto">
+            <i data-ico="search"></i><input type="search" id="qSearch" placeholder="Talaba qidirish...">
+          </div>
+        </div>
+        <div class="panel__body" style="padding:0">
+          <div class="table-wrap" style="border:0">
+            <table class="tbl">
+              <thead><tr><th>#</th><th>Talaba</th><th>Fakultet</th><th>Tanlov</th><th>Sertifikat</th><th>Ball</th></tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <div class="empty hide" id="empty"><i data-ico="search"></i><p>Talaba topilmadi.</p></div>
+        </div>
+      </div>
+
+      <div class="stack" data-reveal="right" data-delay="1">
+        <div class="panel">
+          <div class="panel__head"><i data-ico="graduation-cap"></i><h3>Fakultetlar reytingi</h3></div>
+          <div class="panel__body stack" id="faks"></div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><i data-ico="info"></i><h3>Ball tizimi</h3></div>
+          <div class="panel__body">
+            <div class="stack" style="gap:9px">
+              <div class="flex-between small"><span>Tanlovda ishtirok</span><b>+20</b></div>
+              <div class="flex-between small"><span>G'oliblik</span><b>+100</b></div>
+              <div class="flex-between small"><span>Tadbirda qatnashish</span><b>+10</b></div>
+              <div class="flex-between small"><span>Kitob taqrizi</span><b>+15</b></div>
+              <div class="flex-between small"><span>Volontyorlik</span><b>+25</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+var FAK = [
+  { nom: "Filologiya fakulteti", ball: 14820, foiz: 100 },
+  { nom: "Axborot texnologiyalari", ball: 13940, foiz: 94 },
+  { nom: "Xorijiy tillar", ball: 12310, foiz: 83 },
+  { nom: "Pedagogika", ball: 11450, foiz: 77 },
+  { nom: "Fizika-matematika", ball: 10870, foiz: 73 },
+  { nom: "Iqtisodiyot", ball: 9640, foiz: 65 }
+];
+
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+
+  /* TOP 3 */
+  document.getElementById("top3").innerHTML = DB.reyting.slice(0, 3).map(function (r, i) {
+    var medal = ["#f59e0b", "#94a3b8", "#c2410c"][i];
+    return '<article class="card card--pad card--hover center" data-reveal="zoom" data-delay="' + (i + 1) + '"' +
+      ' style="border-top:4px solid ' + medal + '">' +
+      '<div class="ring-pulse" style="width:88px;height:88px;margin:6px auto 12px;border-radius:50%">' +
+        '<img src="' + IMG + r.avatar + '" alt="" style="width:88px;height:88px;border-radius:50%">' +
+      '</div>' +
+      '<span class="rank rank--' + (i + 1) + '" style="margin:0 auto">' + (i + 1) + '</span>' +
+      '<h3 class="mt-2">' + r.ism + '</h3>' +
+      '<p class="small muted">' + r.fak + '</p>' +
+      '<div class="stat__num mt-2" style="color:' + medal + '"><span data-count="' + r.ball + '"></span></div>' +
+      '<div class="tiny muted">umumiy ball</div>' +
+      '<div class="flex mt-2" style="justify-content:center;gap:14px">' +
+        '<span class="small flex" style="gap:5px"><i data-ico="trophy"></i>' + r.tanlov + '</span>' +
+        '<span class="small flex" style="gap:5px"><i data-ico="award"></i>' + r.sert + '</span>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+
+  /* To'liq jadval */
+  document.getElementById("rows").innerHTML = DB.reyting.map(function (r) {
+    return '<tr data-text="' + (r.ism + " " + r.fak).toLowerCase() + '" data-tags="all">' +
+      '<td><span class="rank' + (r.orin <= 3 ? " rank--" + r.orin : "") + '">' + r.orin + '</span></td>' +
+      '<td><div class="user-cell"><img src="' + IMG + r.avatar + '" alt=""><span><b>' + r.ism + '</b></span></div></td>' +
+      '<td class="small muted">' + r.fak + '</td>' +
+      '<td>' + r.tanlov + '</td><td>' + r.sert + '</td>' +
+      '<td><b>' + r.ball.toLocaleString("ru-RU") + '</b></td></tr>';
+  }).join("");
+
+  /* Fakultetlar */
+  document.getElementById("faks").innerHTML = FAK.map(function (f) {
+    return '<div><div class="flex-between small"><span>' + f.nom + '</span><b>' + f.ball.toLocaleString("ru-RU") + '</b></div>' +
+      '<div class="progress mt-1"><div class="progress__bar" data-progress="' + f.foiz + '"></div></div></div>';
+  }).join("");
+});
+
+UI.initFilter({ chips: "#nochips .chip", items: "#rows tr", search: "#qSearch", empty: "#empty" });
+</script>
+</body>
+</html>

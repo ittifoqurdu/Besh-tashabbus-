@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Urganch Davlat Universiteti nizomi — asosiy qoidalar, tuzilma, huquq va majburiyatlar.">
+<title>Nizom | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="nizom">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Bosh sahifa</a><span class="sep">/</span>
+        <span>Markaz haqida</span><span class="sep">/</span><span>Nizom</span>
+      </nav>
+      <span class="eyebrow" data-reveal><i data-ico="file-text"></i> Rasmiy hujjat</span>
+      <h1 class="mt-2" data-reveal data-delay="1"><span class="title-dark">UNIVERSITET</span> <span class="title-soft">NIZOMI</span></h1>
+      <p class="lead mt-1" style="max-width:700px" data-reveal data-delay="2">
+        Urganch Davlat Universitetining faoliyatini tartibga soluvchi asosiy me'yoriy hujjat.
+        Har bir bo'limni kengaytirib to'liq matnini o'qishingiz mumkin.
+      </p>
+      <button class="btn btn--ghost mt-3" id="dlBtn" data-reveal data-delay="3"><i data-ico="download"></i> PDF ko'rinishida yuklab olish</button>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid" style="grid-template-columns:.8fr 1.4fr;gap:26px;align-items:start">
+
+      <aside class="panel" data-reveal="left" style="position:sticky;top:96px">
+        <div class="panel__head"><i data-ico="list"></i><h3>Mundarija</h3></div>
+        <div class="panel__body" style="padding:8px" id="toc"></div>
+      </aside>
+
+      <div id="sections"></div>
+
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+var BOBLAR = [
+  {
+    b: "I bob", nom: "Umumiy qoidalar",
+    matn: "Urganch Davlat Universiteti (keyingi o'rinlarda — Universitet) Oʻzbekiston Respublikasi Oliy va oʻrta maxsus ta'lim tizimiga kiruvchi davlat oliy ta'lim muassasasi hisoblanadi. Universitet o'z faoliyatini Oʻzbekiston Respublikasi Konstitutsiyasi, \"Ta'lim to'g'risida\"gi qonun, shuningdek ushbu Nizom asosida amalga oshiradi. Universitet yuridik shaxs bo'lib, mustaqil balans, bank hisobvarag'i va o'z nomidan muhrga ega."
+  },
+  {
+    b: "II bob", nom: "Maqsad va vazifalar",
+    matn: "Universitetning asosiy maqsadi — yuqori malakali kadrlar tayyorlash, ilmiy-tadqiqot ishlarini olib borish va yoshlarning ma'naviy-ma'rifiy rivojlanishiga ko'maklashishdan iborat. Shu jumladan, \"Besh muhim tashabbus\" doirasidagi loyihalarni amalga oshirish, talabalarning ijodiy, sport va ijtimoiy faolligini oshirish universitetning ustuvor vazifalaridan hisoblanadi."
+  },
+  {
+    b: "III bob", nom: "Universitet tuzilmasi",
+    matn: "Universitet tarkibiga fakultetlar, kafedralar, ilmiy-tadqiqot markazlari, axborot-resurs markazi (kutubxona), talabalar turar joyi va boshqa yordamchi bo'linmalar kiradi. Universitetni Kengash tomonidan saylangan Rektor boshqaradi. Rektor huzurida O'quv-uslubiy kengash, Ilmiy kengash va Talabalar kengashi faoliyat yuritadi."
+  },
+  {
+    b: "IV bob", nom: "Talabalarning huquq va majburiyatlari",
+    matn: "Talaba sifat ta'lim olish, jamoat birlashmalarida ishtirok etish, ilmiy va ijodiy faoliyat bilan shug'ullanish, ijtimoiy yordam olish huquqiga ega. Shu bilan birga, talaba o'quv rejasini bajarish, universitet ichki tartib-qoidalariga rioya qilish, mol-mulkni asrash majburiyatini o'z zimmasiga oladi. Faol ishtirok etgan talabalar reyting tizimi orqali rag'batlantiriladi."
+  },
+  {
+    b: "V bob", nom: "Professor-o'qituvchilarning maqomi",
+    matn: "Professor-o'qituvchilar tanlov asosida lavozimga tayinlanadi, pedagogik faoliyat bilan bir qatorda ilmiy-tadqiqot ishlarini olib boradi va yoshlar tarbiyasida faol ishtirok etadi. Ularning mehnat sharoiti va huquqlari mehnat qonunchiligi hamda ichki mehnat tartibi qoidalari bilan belgilanadi."
+  },
+  {
+    b: "VI bob", nom: "Moliyaviy-xo'jalik faoliyati",
+    matn: "Universitet davlat byudjeti mablag'lari, grantlar, xorijiy hamkorlik dasturlari va pullik ta'lim xizmatlari hisobidan moliyalashtiriladi. Barcha moliyaviy operatsiyalar amaldagi qonunchilik va ichki moliyaviy nazorat qoidalariga muvofiq amalga oshiriladi."
+  },
+  {
+    b: "VII bob", nom: "Yakuniy qoidalar",
+    matn: "Ushbu Nizomga o'zgartirish va qo'shimchalar Ilmiy kengashning qarori asosida, belgilangan tartibda kiritiladi. Nizom qoidalari Universitetning barcha tarkibiy bo'linmalari, xodimlari va talabalari uchun majburiydir."
+  }
+];
+
+UI.boot(function () {
+  document.getElementById("toc").innerHTML = BOBLAR.map(function (s, i) {
+    return '<a class="quick-link" href="#bob-' + i + '"><i data-ico="chevron-right"></i>' + s.b + ' — ' + s.nom + '</a>';
+  }).join("");
+
+  document.getElementById("sections").innerHTML = BOBLAR.map(function (s, i) {
+    return '<div class="acc' + (i === 0 ? " is-open" : "") + '" id="bob-' + i + '" data-reveal data-delay="' + ((i % 6) + 1) + '">' +
+      '<button class="acc__q" type="button"><span><b style="color:var(--brand-700)">' + s.b + '.</b> ' + s.nom + '</span><i data-ico="chevron-down"></i></button>' +
+      '<div class="acc__a"' + (i === 0 ? ' style="max-height:400px"' : "") + '><div class="acc__a-inner">' + s.matn + '</div></div>' +
+    '</div>';
+  }).join("");
+});
+
+document.getElementById("dlBtn").addEventListener("click", function () {
+  UI.toast("Nizom PDF fayli tayyorlanmoqda...", "download");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Besh muhim tashabbus yo'nalishlari — san'at, sport, axborot texnologiyalari, kitobxonlik va xotin-qizlar bandligi.">
+<title>Tashabbuslar | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="tashabbuslar">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Tashabbuslar</span>
+      </nav>
+      <span class="eyebrow" data-reveal><i data-ico="layers"></i> Beshta asosiy yo'nalish</span>
+      <h1 class="mt-2" data-reveal data-delay="1">Besh muhim <span class="gradient-text">tashabbus</span></h1>
+      <p class="lead mt-1" style="max-width:760px" data-reveal data-delay="2">
+        Har bir tashabbus — talabalarning ma'naviy, jismoniy va intellektual salohiyatini
+        ro'yobga chiqarish uchun alohida dastur. Quyidan o'zingizga mos yo'nalishni tanlang.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="init-grid" id="initGrid"></div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__t" data-reveal>
+          <h2>Yo'nalishlar bo'yicha ko'rsatkichlar</h2>
+          <p class="lead">Joriy o'quv yilida erishilgan natijalar.</p>
+        </div>
+      </div>
+      <div class="grid g-5" id="initStats"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-banner anim-gradient" data-reveal="zoom">
+        <h2>Qaysi tashabbus sizga yaqin?</h2>
+        <p>Ro'yxatdan o'ting va yo'nalishni tanlang — tanlovlar, tadbirlar va kurslar haqidagi bildirishnomalarni birinchilardan bo'lib oling.</p>
+        <div class="flex flex-wrap mt-3" style="justify-content:center">
+          <a class="btn btn--ghost btn--lg" href="../auth/royxatdan-otish.html"><i data-ico="user-plus"></i> Ro'yxatdan o'tish</a>
+          <a class="btn btn--dark btn--lg" href="../tanlovlar/index.html"><i data-ico="trophy"></i> Tanlovlarni ko'rish</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  document.getElementById("initGrid").innerHTML = DB.tashabbuslar.map(function (t, i) {
+    return '<article class="init-card tema-' + t.tema + '" data-reveal data-delay="' + (i + 1) + '">' +
+      '<div class="init-card__top">' +
+        '<span class="init-card__num">' + t.num + '</span>' +
+        '<span class="init-card__art" aria-hidden="true">' + t.emoji + '</span>' +
+      '</div>' +
+      '<h3>' + t.nom + '</h3><p>' + t.qisqa + '</p>' +
+      '<a class="btn btn--sm" href="batafsil.html?id=' + t.id + '">Batafsil <i data-ico="arrow-right"></i></a>' +
+    '</article>';
+  }).join("");
+
+  document.getElementById("initStats").innerHTML = DB.tashabbuslar.map(function (t, i) {
+    return '<div class="panel" data-reveal data-delay="' + (i + 1) + '">' +
+      '<div class="panel__head" style="gap:9px">' +
+      '<span class="init-card__art" style="font-size:20px;letter-spacing:-4px">' + t.emoji + '</span>' +
+      '<h3 style="font-size:14.5px">' + t.nom + '</h3></div>' +
+      '<div class="panel__body" style="padding:14px 16px">' +
+        t.stats.map(function (s) {
+          return '<div class="flex-between" style="padding:7px 0;border-bottom:1px dashed var(--line)">' +
+            '<span class="small muted">' + s.l + '</span><b>' + s.n + '</b></div>';
+        }).join("") +
+      '</div></div>';
+  }).join("");
+});
+</script>
+</body>
+</html>

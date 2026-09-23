@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Tashabbus haqida batafsil ma'lumot, yo'nalishlar, statistika va tegishli tanlovlar.">
+<title>Tashabbus haqida | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="tashabbuslar">
+
+<div id="app-header"></div>
+
+<main id="page"></main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+  var id = UI.param("id") || "sanat";
+  var t = DB.tashabbuslar.filter(function (x) { return x.id === id; })[0] || DB.tashabbuslar[0];
+  document.title = t.nom + " | Besh muhim tashabbus";
+
+  var tanlovlar = DB.tanlovlar.filter(function (c) { return c.tema === t.tema; });
+  var tadbirlar = DB.tadbirlar.filter(function (e) { return e.tema === t.tema; });
+
+  var html = '' +
+  '<section class="page-hero tema-' + t.tema + '">' +
+    '<div class="wrap page-hero__inner">' +
+      '<nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span>' +
+      '<a href="index.html">Tashabbuslar</a><span class="sep">/</span><span>' + t.nom + '</span></nav>' +
+      '<div class="grid" style="grid-template-columns:1.15fr .9fr;gap:34px;align-items:center">' +
+        '<div data-reveal="left">' +
+          '<div class="flex" style="gap:12px">' +
+            '<span class="init-card__art" style="font-size:34px;letter-spacing:-5px">' + t.emoji + '</span>' +
+            '<span class="badge badge--t' + t.tema + '">' + t.num + '-tashabbus</span>' +
+          '</div>' +
+          '<h1 class="mt-2">' + t.nom + '</h1>' +
+          '<p class="lead mt-1">' + t.matn + '</p>' +
+          '<div class="flex flex-wrap mt-3">' +
+            '<a class="btn btn--primary" href="../auth/royxatdan-otish.html"><i data-ico="user-plus"></i> Yo\'nalishga qo\'shilish</a>' +
+            '<a class="btn btn--ghost" href="../tanlovlar/index.html"><i data-ico="trophy"></i> Tanlovlar</a>' +
+          '</div>' +
+        '</div>' +
+        '<div data-reveal="right" data-delay="1">' +
+          '<div class="card" style="overflow:hidden;border-radius:var(--r-xl)">' +
+            '<img src="' + IMG + t.rasm + '" alt="' + t.nom + '" style="width:100%;aspect-ratio:16/10;object-fit:cover">' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+  '</section>' +
+
+  '<section class="section--tight"><div class="wrap grid g-3">' +
+    t.stats.map(function (s, i) {
+      return '<div class="stat" data-reveal data-delay="' + (i + 1) + '" style="padding:26px 16px">' +
+        '<div class="stat__num" style="font-size:32px;color:var(--t' + t.tema + ')">' + s.n + '</div>' +
+        '<div class="stat__lbl">' + s.l + '</div></div>';
+    }).join("") +
+  '</div></section>' +
+
+  '<section class="section--tight"><div class="wrap">' +
+    '<div class="sec-head"><div class="sec-head__t" data-reveal><h2>Faoliyat yo\'nalishlari</h2>' +
+    '<p class="lead">Ushbu tashabbus doirasida ishlayotgan to\'garak va dasturlar.</p></div></div>' +
+    '<div class="grid g-3">' +
+      t.yonalishlar.map(function (y, i) {
+        return '<div class="card card--pad card--hover flex" data-reveal data-delay="' + ((i % 6) + 1) + '">' +
+          '<span class="init-card__icon" style="width:46px;height:46px;background:var(--t' + t.tema + '-soft);color:var(--t' + t.tema + ')">' +
+          '<i data-ico="check" data-size="22"></i></span>' +
+          '<b style="font-size:15px">' + y + '</b></div>';
+      }).join("") +
+    '</div>' +
+  '</div></section>' +
+
+  '<section class="section"><div class="wrap grid" style="grid-template-columns:1.2fr .95fr;align-items:start;gap:26px">' +
+    '<div data-reveal="left">' +
+      '<h2>Yo\'nalish bo\'yicha tanlovlar</h2>' +
+      '<div class="stack mt-2">' +
+        (tanlovlar.length ? tanlovlar.map(function (c) {
+          return '<article class="card card--pad card--hover">' +
+            '<div class="flex-between flex-wrap">' +
+              '<b style="font-size:16px">' + c.nom + '</b>' +
+              (c.holat === "yopiq" ? '<span class="badge">Yakunlangan</span>'
+                : c.holat === "davom" ? '<span class="badge badge--live">Davom etmoqda</span>'
+                : '<span class="badge badge--ok">Ochiq</span>') +
+            '</div>' +
+            '<p class="small muted mt-1">' + c.qisqa + '</p>' +
+            '<div class="contest-card__meta mt-2">' +
+              '<span><i data-ico="clock"></i>' + c.muddat + '</span>' +
+              '<span><i data-ico="users"></i>' + c.ishtirokchi + ' ishtirokchi</span>' +
+              '<span><i data-ico="gift"></i>' + c.sovrin + '</span>' +
+            '</div></article>';
+        }).join("") : '<div class="empty"><i data-ico="info"></i><p>Hozircha tanlov e\'lon qilinmagan.</p></div>') +
+      '</div>' +
+    '</div>' +
+    '<div class="panel" data-reveal="right" data-delay="1">' +
+      '<div class="panel__head"><i data-ico="calendar-days"></i><h3>Yaqin tadbirlar</h3></div>' +
+      '<div class="panel__body" style="padding:8px">' +
+        (tadbirlar.length ? tadbirlar.map(function (e) {
+          return '<div class="event" style="padding:10px">' +
+            '<div class="event__date" style="width:60px;padding:8px 4px"><b style="font-size:19px">' + e.kun + '</b><span>' + e.oy + '</span></div>' +
+            '<div class="event__body"><b style="font-size:14.5px">' + e.nom + '</b>' +
+            '<div class="meta mt-1"><span><i data-ico="map-pin"></i>' + e.joy + '</span></div></div></div>';
+        }).join("") : '<div class="empty"><p class="small">Tadbirlar tez orada e\'lon qilinadi.</p></div>') +
+      '</div>' +
+    '</div>' +
+  '</div></section>' +
+
+  '<section class="section--tight"><div class="wrap flex flex-wrap" style="justify-content:space-between">' +
+    '<a class="btn btn--ghost" href="index.html"><i data-ico="arrow-left"></i> Barcha tashabbuslar</a>' +
+    '<div class="flex">' + DB.tashabbuslar.map(function (o) {
+      return '<a class="chip' + (o.id === t.id ? ' is-active' : '') + '" href="batafsil.html?id=' + o.id + '">' + o.num + '</a>';
+    }).join("") + '</div>' +
+  '</div></section>';
+
+  document.getElementById("page").innerHTML = html;
+});
+</script>
+</body>
+</html>

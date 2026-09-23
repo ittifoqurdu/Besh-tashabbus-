@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Yangilik matni — Besh muhim tashabbus platformasi.">
+<title>Yangilik | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="yangiliklar">
+
+<div id="app-header"></div>
+<main id="page"></main>
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+  var id = UI.param("id") || "n1";
+  var n = DB.yangiliklar.filter(function (x) { return x.id === id; })[0] || DB.yangiliklar[0];
+  document.title = n.sarlavha + " | Yangiliklar";
+
+  var boshqa = DB.yangiliklar.filter(function (x) { return x.id !== n.id; }).slice(0, 3);
+
+  document.getElementById("page").innerHTML =
+  '<section class="page-hero"><div class="wrap page-hero__inner">' +
+    '<nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span>' +
+    '<a href="index.html">Yangiliklar</a><span class="sep">/</span><span>' + n.bolim + '</span></nav>' +
+    '<div style="max-width:820px">' +
+      '<span class="badge badge--t' + n.tema + '">' + n.bolim + '</span>' +
+      '<h1 class="mt-2" data-reveal>' + n.sarlavha + '</h1>' +
+      '<div class="flex flex-wrap small muted mt-2" style="gap:18px">' +
+        '<span class="flex" style="gap:6px"><i data-ico="clock"></i>' + n.sana + '</span>' +
+        '<span class="flex" style="gap:6px"><i data-ico="eye"></i>' + n.oqish + ' o\'qish</span>' +
+        '<span class="flex" style="gap:6px"><i data-ico="id-card"></i>' + n.muallif + '</span>' +
+      '</div>' +
+    '</div>' +
+  '</div></section>' +
+
+  '<section class="section--tight"><div class="wrap grid" style="grid-template-columns:1.4fr .7fr;gap:28px;align-items:start">' +
+    '<article data-reveal>' +
+      '<div class="card" style="overflow:hidden;border-radius:var(--r-xl)">' +
+        '<img src="' + IMG + n.rasm + '" alt="" style="width:100%;aspect-ratio:16/9;object-fit:cover">' +
+      '</div>' +
+      '<p class="lead mt-3">' + n.qisqa + '</p>' +
+      '<p class="mt-2">' + n.matn + '</p>' +
+      '<p class="mt-2">Platformada ro\'yxatdan o\'tgan barcha talabalar ushbu tadbir va tanlovlar haqidagi ' +
+      'bildirishnomalarni shaxsiy kabinetlari orqali oladilar. Qo\'shimcha savollar bo\'yicha fakultet ' +
+      'tyutori yoki "Aloqa" bo\'limi orqali murojaat qilishingiz mumkin.</p>' +
+      '<div class="card card--pad mt-3 flex flex-wrap" style="justify-content:space-between;gap:12px">' +
+        '<span class="flex" style="gap:8px"><i data-ico="share"></i><b class="small">Ulashish:</b></span>' +
+        '<div class="flex">' +
+          '<button class="btn btn--ghost btn--sm js-share"><i data-ico="telegram"></i> Telegram</button>' +
+          '<button class="btn btn--ghost btn--sm js-share"><i data-ico="facebook"></i> Facebook</button>' +
+          '<button class="btn btn--ghost btn--sm js-share"><i data-ico="share"></i> Havolani nusxalash</button>' +
+        '</div>' +
+      '</div>' +
+      '<a class="btn btn--soft mt-3" href="index.html"><i data-ico="arrow-left"></i> Barcha yangiliklar</a>' +
+    '</article>' +
+
+    '<aside class="stack" data-reveal="right" data-delay="1">' +
+      '<div class="panel"><div class="panel__head"><i data-ico="list"></i><h3>Boshqa yangiliklar</h3></div>' +
+        '<div class="panel__body" style="padding:10px">' +
+          boshqa.map(function (b) {
+            return '<a class="news-item" href="maqola.html?id=' + b.id + '">' +
+              '<span class="news-item__img"><img src="' + IMG + b.rasm + '" alt=""></span>' +
+              '<span class="news-item__body"><b>' + b.sarlavha + '</b>' +
+              '<span class="news-item__date"><i data-ico="clock"></i>' + b.sana + '</span></span></a>';
+          }).join("") +
+        '</div></div>' +
+      '<div class="panel"><div class="panel__head"><i data-ico="sparkles"></i><h3>Tashabbuslar</h3></div>' +
+        '<div class="panel__body" style="padding:10px">' +
+          DB.tashabbuslar.map(function (t) {
+            return '<a class="quick-link" href="../tashabbuslar/batafsil.html?id=' + t.id + '">' +
+              '<i data-ico="' + t.icon + '"></i>' + t.nom + '<i data-ico="chevron-right" class="arrow"></i></a>';
+          }).join("") +
+        '</div></div>' +
+    '</aside>' +
+  '</div></section>';
+});
+
+document.addEventListener("click", function (e) {
+  if (e.target.closest(".js-share")) UI.toast("Havola nusxalandi (demo)", "check-circle");
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Ko'p beriladigan savollar va javoblar — Besh muhim tashabbus platformasi.">
+<title>Savol-javob | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Savol-javob</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="info"></i> Yordam markazi</span>
+      <h1 class="mt-2" data-reveal data-delay="1">Ko'p beriladigan <span class="gradient-text">savollar</span></h1>
+      <p class="lead mt-1" style="max-width:700px" data-reveal data-delay="2">
+        Eng koʻp soʻraladigan savollarga javoblarni shu yerdan toping. Javob topilmasa —
+        <a href="../aloqa/index.html" style="color:var(--brand-600);font-weight:650">bizga yozing</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid" style="grid-template-columns:1.35fr .7fr;gap:26px;align-items:start">
+      <div data-reveal="left">
+        <div class="search-box" style="max-width:420px">
+          <i data-ico="search"></i><input type="search" id="qSearch" placeholder="Savol bo'yicha qidirish...">
+        </div>
+        <div class="mt-3" id="faq"></div>
+        <div class="empty hide" id="empty"><i data-ico="search"></i><h3>Savol topilmadi</h3><p>Boshqa kalit so'z bilan urinib ko'ring.</p></div>
+      </div>
+
+      <aside class="stack" data-reveal="right" data-delay="1">
+        <div class="panel">
+          <div class="panel__head"><i data-ico="phone"></i><h3>Qo'llab-quvvatlash</h3></div>
+          <div class="panel__body stack">
+            <p class="small">Javob topolmadingizmi? Bizga to'g'ridan-to'g'ri murojaat qiling.</p>
+            <a class="btn btn--primary btn--block" href="../aloqa/index.html"><i data-ico="send"></i> Murojaat yuborish</a>
+            <a class="btn btn--ghost btn--block" href="tel:+998622246770"><i data-ico="phone"></i> +998 (62) 224-67-70</a>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><i data-ico="grid"></i><h3>Foydali havolalar</h3></div>
+          <div class="panel__body" style="padding:10px">
+            <a class="quick-link" href="../tanlovlar/index.html"><i data-ico="trophy"></i>Tanlovlar<i data-ico="chevron-right" class="arrow"></i></a>
+            <a class="quick-link" href="../tadbirlar/index.html"><i data-ico="calendar-days"></i>Tadbirlar<i data-ico="chevron-right" class="arrow"></i></a>
+            <a class="quick-link" href="../kutubxona/index.html"><i data-ico="book-open"></i>Kutubxona<i data-ico="chevron-right" class="arrow"></i></a>
+            <a class="quick-link" href="../reytinglar/index.html"><i data-ico="bar-chart"></i>Reytinglar<i data-ico="chevron-right" class="arrow"></i></a>
+            <a class="quick-link" href="../kabinet/index.html"><i data-ico="id-card"></i>Shaxsiy kabinet<i data-ico="chevron-right" class="arrow"></i></a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  document.getElementById("faq").innerHTML = DB.savollar.map(function (f, i) {
+    return '<div class="acc" data-reveal data-delay="' + ((i % 6) + 1) + '" data-tags="all"' +
+      ' data-text="' + (f.s + " " + f.j).toLowerCase() + '">' +
+      '<button class="acc__q" type="button"><span>' + f.s + '</span><i data-ico="chevron-down"></i></button>' +
+      '<div class="acc__a"><div class="acc__a-inner">' + f.j + '</div></div>' +
+    '</div>';
+  }).join("");
+});
+
+UI.initFilter({ chips: "#nochips .chip", items: "#faq .acc", search: "#qSearch", empty: "#empty" });
+</script>
+</body>
+</html>

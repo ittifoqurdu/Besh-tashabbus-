@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Besh muhim tashabbus">
+  <defs>
+    <!-- Har bir parrak (blade) uchun yengil gradient — reference logotipdagi kabi -->
+    <linearGradient id="bt-navy" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3a63b8"/><stop offset="1" stop-color="#1d3f80"/></linearGradient>
+    <linearGradient id="bt-green" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fb56a"/><stop offset="1" stop-color="#1c8a45"/></linearGradient>
+    <linearGradient id="bt-cyan" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4aa9e6"/><stop offset="1" stop-color="#1f74c4"/></linearGradient>
+    <linearGradient id="bt-purple" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a5bc9"/><stop offset="1" stop-color="#5d33a0"/></linearGradient>
+    <linearGradient id="bt-red" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e8544f"/><stop offset="1" stop-color="#c22c2c"/></linearGradient>
+  </defs>
+
+  <g transform="translate(130,130)">
+
+    <!-- ============ 5 ta aylanma parrak (pinwheel blades) ============ -->
+    <!-- Blade shakli "yuqoriga" qaragan holda chizilgan, keyin har biri 72° ga aylantiriladi -->
+    <g id="blades">
+      <path transform="rotate(0)"   fill="url(#bt-navy)"   d="M0,-96 C24,-82 34,-46 28,-12 C25,7 10,20 -8,15 C-23,11 -29,-6 -23,-23 C-15,-48 -9,-74 0,-96 Z"/>
+      <path transform="rotate(72)"  fill="url(#bt-green)"  d="M0,-96 C24,-82 34,-46 28,-12 C25,7 10,20 -8,15 C-23,11 -29,-6 -23,-23 C-15,-48 -9,-74 0,-96 Z"/>
+      <path transform="rotate(144)" fill="url(#bt-cyan)"   d="M0,-96 C24,-82 34,-46 28,-12 C25,7 10,20 -8,15 C-23,11 -29,-6 -23,-23 C-15,-48 -9,-74 0,-96 Z"/>
+      <path transform="rotate(216)" fill="url(#bt-purple)" d="M0,-96 C24,-82 34,-46 28,-12 C25,7 10,20 -8,15 C-23,11 -29,-6 -23,-23 C-15,-48 -9,-74 0,-96 Z"/>
+      <path transform="rotate(288)" fill="url(#bt-red)"    d="M0,-96 C24,-82 34,-46 28,-12 C25,7 10,20 -8,15 C-23,11 -29,-6 -23,-23 C-15,-48 -9,-74 0,-96 Z"/>
+    </g>
+
+    <!-- Har bir parrak uchidagi nozik ikkinchi qatlam (reference'dagi "ikki chiziqli" effekt) -->
+    <g opacity=".28" stroke="#ffffff" stroke-width="3" fill="none">
+      <path transform="rotate(0)"   d="M-4,-88 C10,-70 14,-40 8,-14"/>
+      <path transform="rotate(72)"  d="M-4,-88 C10,-70 14,-40 8,-14"/>
+      <path transform="rotate(144)" d="M-4,-88 C10,-70 14,-40 8,-14"/>
+      <path transform="rotate(216)" d="M-4,-88 C10,-70 14,-40 8,-14"/>
+      <path transform="rotate(288)" d="M-4,-88 C10,-70 14,-40 8,-14"/>
+    </g>
+
+    <!-- ============ Har bir yo'nalish uchun rangli nishon + oq ikonka ============ -->
+    <!-- 01 San'at va madaniyat — tepada, palitra + nota -->
+    <g transform="translate(0,-118)">
+      <circle r="21" fill="url(#bt-navy)" stroke="#fff" stroke-width="3"/>
+      <g stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-9,3 C-9,-5 -3,-10 4,-10 C10,-10 12,-6 9,-3 C7,-1 8,2 11,2 C13,2 13,5 10,7 C6,10 -9,9 -9,3Z"/>
+        <circle cx="-5" cy="1" r="1.1" fill="#fff" stroke="none"/>
+        <circle cx="0" cy="-4" r="1.1" fill="#fff" stroke="none"/>
+        <circle cx="5" cy="0" r="1.1" fill="#fff" stroke="none"/>
+        <path d="M12,-9 v9 M12,-9 l4,1.4 v3 l-4,-1.2"/>
+      </g>
+    </g>
+
+    <!-- 02 Sport — o'ng tomonda, kubok -->
+    <g transform="rotate(72) translate(0,-118) rotate(-72)">
+      <circle r="21" fill="url(#bt-green)" stroke="#fff" stroke-width="3"/>
+      <g stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M-6,-8 h12 v6 a6 6 0 0 1 -12 0 Z"/>
+        <path d="M-6,-6 h-3 a3 3 0 0 0 3 5"/>
+        <path d="M6,-6 h3 a3 3 0 0 1 -3 5"/>
+        <path d="M0,4 v3 M-4,10 h8 M-3,7 h6 l1,3 h-8 Z"/>
+      </g>
+    </g>
+
+    <!-- 03 Axborot texnologiyalari — pastda o'ngda, monitor -->
+    <g transform="rotate(144) translate(0,-118) rotate(-144)">
+      <circle r="21" fill="url(#bt-cyan)" stroke="#fff" stroke-width="3"/>
+      <g stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="-10" y="-8" width="20" height="13" rx="1.6"/>
+        <path d="M-4,8 h8 M0,5 v3"/>
+        <path d="M-5,-3 l3,2.5 l-3,2.5 M2,1.5 h4"/>
+      </g>
+    </g>
+
+    <!-- 04 Kitobxonlik — pastda chapda, ochiq kitob -->
+    <g transform="rotate(216) translate(0,-118) rotate(-216)">
+      <circle r="21" fill="url(#bt-purple)" stroke="#fff" stroke-width="3"/>
+      <g stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M0,-7 C-3,-9.5 -8,-9.5 -11,-8 V6 C-8,4.5 -3,4.5 0,7 C3,4.5 8,4.5 11,6 V-8 C8,-9.5 3,-9.5 0,-7 Z"/>
+        <path d="M0,-7 V7"/>
+      </g>
+    </g>
+
+    <!-- 05 Xotin-qizlar bandligi — chapda, qo'llab-quvvatlash operatori -->
+    <g transform="rotate(288) translate(0,-118) rotate(-288)">
+      <circle r="21" fill="url(#bt-red)" stroke="#fff" stroke-width="3"/>
+      <g stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="0" cy="-5" r="4.2"/>
+        <path d="M-8,9 C-8,2 -4,-1 0,-1 C4,-1 8,2 8,9"/>
+        <path d="M-8,1 a8 8 0 0 1 16,0"/>
+        <path d="M-8,1 v3 a2 2 0 0 0 2,2 M8,1 v3 a2 2 0 0 1 -2,2"/>
+      </g>
+    </g>
+
+    <!-- ============ Markaziy oq doira + matn ============ -->
+    <circle r="58" fill="#ffffff"/>
+    <text x="0" y="-3" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="800" fill="#1d3f80" letter-spacing=".2">BESH MUHIM</text>
+    <text x="0" y="18" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="19" font-weight="800" fill="#1d3f80" letter-spacing=".2">TASHABBUS</text>
+
+  </g>
+</svg>

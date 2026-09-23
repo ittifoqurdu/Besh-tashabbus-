@@ -1,0 +1,292 @@
+/* ============================================================
+   Sarlavha (header), navigatsiya, hero, footer
+   ============================================================ */
+
+/* ---------- Yuqori progress chizigi ---------- */
+.scroll-progress{
+  position:fixed;top:0;left:0;height:3px;width:0;z-index:120;
+  background:linear-gradient(90deg,var(--brand-700),var(--brand-500),var(--t2));
+  box-shadow:0 0 12px rgba(18,77,54,.5);transition:width .1s linear;
+}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:sticky;top:0;z-index:100;
+  background:color-mix(in srgb,var(--surface) 88%,transparent);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+  transition:box-shadow .3s var(--ease),background .3s var(--ease);
+}
+.site-header.is-stuck{box-shadow:var(--sh-sm)}
+.header-inner{display:flex;align-items:center;gap:14px;height:78px;min-width:0}
+
+.brand{display:flex;align-items:center;gap:11px;flex:none}
+/* Rasmiy logotip so'z belgisini (wordmark) o'zida saqlaydi — balandlik bo'yicha
+   cheklanadi, kengligi mutanosib ravishda o'zi hisoblanadi */
+.brand__logo{height:44px;width:auto;flex:none;transition:transform .35s var(--ease)}
+.brand:hover .brand__logo{transform:scale(1.04)}
+
+.nav{display:flex;align-items:center;flex-wrap:nowrap;gap:1px;margin-inline:auto}
+.nav__link{
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
+  padding:9px 11px;border-radius:9px;
+  font-size:14px;font-weight:600;color:var(--ink-2);
+  position:relative;transition:color .25s var(--ease),background .25s var(--ease);
+}
+.nav__link .ico{width:16px;height:16px;opacity:.8;flex:none}
+/* Hoverda faqat pastki chiziqcha chiziladi — fon, matn va ikonka rangi/joyi
+   o'zgarmaydi (foydalanuvchi talabi: "faqat tagida chiziqcha chizilsin") */
+.nav__link::after{
+  content:"";position:absolute;left:11px;right:11px;bottom:3px;height:2.5px;border-radius:2px;
+  background:var(--brand-700);
+  transform:scaleX(0);transform-origin:center;transition:transform .35s var(--ease);
+}
+.nav__link:hover::after{transform:scaleX(1)}
+.nav__link.is-active{color:var(--brand-700);font-weight:700}
+.nav__link.is-active .ico{opacity:1}
+.nav__link.is-active::after{transform:scaleX(1)}
+.nav__link.is-active:hover::after{transform:scaleX(1)}
+
+/* "Ko'proq" ochiluvchi menyusi */
+.nav__more{position:relative}
+.nav__more > .nav__link{cursor:pointer}
+.nav__more > .nav__link .ico-caret{width:15px;height:15px;transition:transform .3s var(--ease)}
+.nav__more.is-open > .nav__link{color:var(--brand-700);background:var(--brand-50)}
+.nav__more.is-open > .nav__link .ico-caret{transform:rotate(180deg)}
+.dropdown{
+  position:absolute;top:calc(100% + 14px);right:0;min-width:236px;z-index:60;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--sh-lg);padding:8px;
+  opacity:0;visibility:hidden;transform:translateY(-8px);
+  transition:opacity .25s var(--ease),transform .25s var(--ease),visibility .25s;
+}
+.nav__more.is-open .dropdown{opacity:1;visibility:visible;transform:none}
+.dropdown a{
+  display:flex;align-items:center;gap:11px;padding:10px 12px;border-radius:9px;
+  font-size:14px;font-weight:600;color:var(--ink-2);transition:all .22s var(--ease);
+}
+.dropdown a .ico{width:17px;height:17px;color:var(--brand-600)}
+.dropdown a:hover{background:var(--brand-50);color:var(--brand-700);transform:translateX(3px)}
+.dropdown a.is-active{background:var(--brand-50);color:var(--brand-700);font-weight:700}
+.dropdown a.is-active .ico{color:var(--brand-700)}
+
+.header-actions{display:flex;align-items:center;gap:9px;flex:none}
+/* Kirish / Ro'yxatdan o'tish tugmalari — ortiqcha soyasiz, tekis ko'rinish */
+.header-actions .btn{box-shadow:none}
+.header-actions .btn:hover{box-shadow:none}
+.icon-btn{
+  width:40px;height:40px;border-radius:10px;display:grid;place-items:center;
+  border:1px solid transparent;background:transparent;color:var(--ink-2);
+  transition:all .28s var(--ease);
+}
+.icon-btn:hover{background:var(--brand-50);color:var(--brand-700)}
+.icon-btn .ico{width:19px;height:19px}
+
+.burger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line-strong);background:var(--surface)}
+.burger span{display:block;width:19px;height:2px;margin:4px auto;background:var(--ink);border-radius:2px;transition:transform .3s var(--ease),opacity .3s}
+.burger.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.burger.is-open span:nth-child(2){opacity:0}
+.burger.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+/* Mobil menyu */
+.mobile-nav{
+  position:fixed;inset:78px 0 auto 0;z-index:99;
+  background:var(--surface);border-bottom:1px solid var(--line);
+  box-shadow:var(--sh-lg);padding:14px var(--pad) 22px;
+  display:none;flex-direction:column;gap:4px;
+  max-height:calc(100vh - 78px);overflow-y:auto;
+}
+.mobile-nav.is-open{display:flex;animation:slideDown .34s var(--ease)}
+.mobile-nav .nav__link{padding:13px 14px;font-size:15.5px;border-radius:10px}
+.mobile-nav .nav__link::after{display:none}
+.mobile-nav .nav__link.is-active{background:var(--brand-50)}
+.mobile-nav__sep{height:1px;background:var(--line);margin:8px 0}
+.mobile-nav__cta{display:flex;gap:10px;margin-top:12px}
+.mobile-nav__cta .btn{flex:1}
+
+/* Mobil menyudagi "Markaz haqida" kabi ichma-ich guruhlar */
+.mobile-group__t{
+  padding:12px 14px 6px;font-size:12px;font-weight:750;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.mobile-group.is-active .mobile-group__t{color:var(--brand-700)}
+.mobile-sub{padding-left:26px !important;font-size:14.5px !important}
+.mobile-sub .ico{width:16px;height:16px}
+
+/* Tor ekranlarda menyu ixchamlashadi — lekin ikonkalar va bitta qator saqlanadi */
+@media (max-width:1620px){
+  .nav{gap:0}
+  .nav .nav__link{padding:9px 9px;font-size:13.5px;gap:5px}
+  .nav .nav__link::after{left:9px;right:9px}
+  .nav .nav__link .ico{width:15px;height:15px}
+}
+@media (max-width:1460px){
+  .header-inner{gap:8px}
+  .header-actions{gap:6px}
+  .nav .nav__link{padding:8px 7px;font-size:13px;gap:4px}
+  .nav .nav__link::after{left:7px;right:7px}
+  .header-actions .btn{padding:8px 12px;font-size:13px}
+  .brand__logo{height:36px}
+}
+@media (max-width:1160px){ .nav{display:none} .burger{display:block} }
+/* Qidiruv, Kirish tugmasi va burger doim ko'rinadi; faqat "Ro'yxatdan o'tish"
+   matnli tugma juda tor ekranda joy tejash uchun yashiriladi */
+@media (max-width:560px){ .hide-xs{display:none !important} }
+@media (max-width:420px){ .brand__logo{height:32px} }
+
+/* ---------- Qidiruv oynasi ---------- */
+.search-modal{
+  position:fixed;inset:0;z-index:140;display:none;
+  background:rgba(8,21,15,.45);backdrop-filter:blur(4px);
+  padding:12vh 20px 20px;
+}
+.search-modal.is-open{display:block;animation:fadeIn .25s var(--ease)}
+.search-modal__box{
+  max-width:640px;margin:0 auto;background:var(--surface);
+  border:1px solid var(--line);border-radius:18px;box-shadow:var(--sh-lg);
+  padding:16px;animation:slideDown .32s var(--ease);
+}
+.search-modal__row{display:flex;align-items:center;gap:12px;padding:6px 8px}
+.search-modal__row .ico{width:22px;height:22px;color:var(--brand-600)}
+.search-modal__row input{
+  flex:1;border:0;background:transparent;font-size:17px;font-weight:600;color:var(--ink);
+}
+.search-modal__row input:focus{outline:none}
+.search-modal__hint{font-size:12px;color:var(--muted-2);padding:8px 8px 2px;border-top:1px solid var(--line);margin-top:8px}
+.search-results{max-height:46vh;overflow-y:auto;margin-top:6px}
+.search-results a{
+  display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;
+  font-size:14.5px;font-weight:600;color:var(--ink-2);transition:all .22s var(--ease);
+}
+.search-results a .ico{width:17px;height:17px;color:var(--brand-600)}
+.search-results a small{margin-left:auto;font-weight:500;color:var(--muted-2);font-size:12px}
+.search-results a:hover{background:var(--brand-50);color:var(--brand-700)}
+
+/* ---------- HERO ---------- */
+/* Matn va rasm BITTA grid ichida — shu sababli ular hech qachon bir-birining
+   ustiga chiqmaydi (ikkita mustaqil koordinata tizimini moslashtirishga
+   urinishning o'rniga, brauzerning o'ziga hisoblatamiz). Rasmning o'ng
+   chegarasi grid ustunining o'ng chegarasi bo'lgani uchun avtomatik ravishda
+   sarlavhadagi "Ro'yxatdan o'tish" tugmasi va pastdagi 5-karta bilan bir xil
+   chiziqqa tushadi — .wrap konteyneri ham xuddi shu chegarada tugaydi. */
+.hero{
+  position:relative;overflow:hidden;
+  padding:clamp(18px,2.4vw,28px) 0 clamp(20px,2.8vw,32px);
+  background:linear-gradient(120deg,#f7faf8 0%,#eef5f1 55%,#e8f2ec 100%);
+}
+html[data-theme="dark"] .hero{background:linear-gradient(120deg,#0b1a13,#0f2419)}
+
+.hero__inner{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);
+  gap:clamp(24px,4vw,54px);align-items:center;
+}
+.hero__title{margin:16px 0 16px;font-size:clamp(30px,4.4vw,52px);line-height:1.08}
+.hero__title span{display:block}
+.hero__actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+
+/* O'ng tarafdagi aylanuvchi rasm — grid ustuniga to'liq sig'adi, hech qayerga
+   "oqmaydi" (bleed qilmaydi), shu bilan birga ekranga mos balandlikda turadi */
+.hero__media{
+  /* To'g'ri to'rtburchak — burchaklari yumaloq emas, soyasiz, faqat sof rasm */
+  position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;
+}
+.slider{position:absolute;inset:0}
+.slider__track{position:absolute;inset:0}
+.slide{
+  position:absolute;inset:0;opacity:0;visibility:hidden;
+  transition:opacity 1.1s var(--ease),transform 7.5s linear,visibility 1.1s;
+  transform:scale(1.02);
+}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.is-active{opacity:1;visibility:visible;transform:scale(1.1)} /* Ken Burns */
+
+/* Slayder nuqtalari — rasm ostida markazda */
+.slider__dots{position:absolute;left:50%;transform:translateX(-50%);bottom:18px;display:flex;gap:8px;z-index:4}
+.slider__dot{width:8px;height:8px;border-radius:99px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.06);transition:all .35s var(--ease);cursor:pointer}
+.slider__dot.is-active{width:26px;background:#fff}
+.slider__nav{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:4;
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,255,255,.9);color:#0d3b29;box-shadow:var(--sh-sm);
+  opacity:0;transition:opacity .3s var(--ease),transform .3s var(--ease);
+}
+.hero__media:hover .slider__nav{opacity:1}
+.slider__nav--prev{left:14px}
+.slider__nav--next{right:14px}
+.slider__nav:hover{transform:translateY(-50%) scale(1.1)}
+.slider__nav .ico{width:18px;height:18px}
+
+@media (max-width:900px){
+  .hero__inner{grid-template-columns:1fr}
+  .hero__media{aspect-ratio:16/10;order:2;margin-top:8px}
+  .slider__nav{display:none}
+}
+
+/* ---------- Bo'lim sarlavhasi ---------- */
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:26px;flex-wrap:wrap}
+.sec-head__t{max-width:660px}
+.sec-head h2{margin-bottom:6px}
+
+/* ---------- Sahifa banneri (ichki sahifalar) ---------- */
+.page-hero{position:relative;overflow:hidden;padding:clamp(34px,5vw,58px) 0 clamp(30px,4vw,44px);border-bottom:1px solid var(--line);
+  background:linear-gradient(120deg,#f7faf8,#eef5f1)}
+html[data-theme="dark"] .page-hero{background:linear-gradient(120deg,#0b1a13,#0f2419)}
+.page-hero::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background:url("../img/logo/naqsh.svg") repeat;background-size:130px;
+  -webkit-mask-image:linear-gradient(120deg,transparent 40%,#000);
+  mask-image:linear-gradient(120deg,transparent 40%,#000);
+}
+.page-hero__inner{position:relative;z-index:1}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:12px;flex-wrap:wrap}
+.breadcrumb a:hover{color:var(--brand-700)}
+.breadcrumb .sep{opacity:.5}
+
+/* ---------- Footer ---------- */
+.site-footer{background:var(--brand-900);color:#c3d6cc;margin-top:36px;position:relative;overflow:hidden}
+.site-footer::before{
+  content:"";position:absolute;inset:0;opacity:.07;
+  background:url("../img/logo/naqsh.svg") repeat;background-size:110px;filter:brightness(3);
+}
+.footer-top{position:relative;z-index:1;display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:32px;padding:52px 0 38px}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.footer-brand img{width:48px;height:48px}
+.footer-brand b{color:#fff;font-size:14.5px;display:block;line-height:1.3}
+.footer-brand span{font-size:11.5px;color:#8fae9d;text-transform:uppercase;letter-spacing:.06em}
+.site-footer h4{color:#fff;font-size:14.5px;margin-bottom:14px;letter-spacing:.01em}
+.site-footer p{color:#a6bdb1}
+.footer-links{display:flex;flex-direction:column;gap:11px}
+.footer-links a{
+  display:flex;align-items:flex-start;gap:9px;
+  font-size:13.5px;line-height:1.5;color:#a6bdb1;
+  transition:color .25s var(--ease),transform .25s var(--ease);
+}
+.footer-links a .ico{width:15px;height:15px;flex:none;margin-top:2px;color:#7fa392;opacity:.9}
+.footer-links a:hover{color:#fff;transform:translateX(4px)}
+.footer-links a:hover .ico{color:#fff}
+.socials{display:flex;gap:9px;margin-top:14px}
+.socials a{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:rgba(255,255,255,.08);color:#fff;transition:transform .3s var(--ease),background .3s var(--ease);
+}
+.socials a:hover{transform:translateY(-4px) scale(1.06);background:var(--brand-600)}
+.socials .ico{width:18px;height:18px}
+.footer-bottom{
+  position:relative;z-index:1;border-top:1px solid rgba(255,255,255,.1);
+  padding:16px 0;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:#87a496;
+}
+@media (max-width:900px){ .footer-top{grid-template-columns:1fr 1fr} }
+@media (max-width:560px){ .footer-top{grid-template-columns:1fr;gap:26px} }
+
+/* ---------- Yuqoriga qaytish ---------- */
+.to-top{
+  position:fixed;right:22px;bottom:22px;z-index:95;
+  width:46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  background:var(--brand-700);color:#fff;box-shadow:var(--sh-glow);
+  opacity:0;pointer-events:none;transform:translateY(14px) scale(.85);
+  transition:all .35s var(--ease);
+}
+.to-top.is-on{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{transform:translateY(-3px) scale(1.06)}
+.to-top .ico{width:20px;height:20px}

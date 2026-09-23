@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Universitet tadbirlari taqvimi: seminarlar, konsertlar, sport musobaqalari, treninglar va uchrashuvlar.">
+<title>Tadbirlar | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="tadbirlar">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Tadbirlar</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="calendar-days"></i> Sentabr – Oktabr 2026</span>
+      <h1 class="mt-2" data-reveal data-delay="1">Tadbirlar <span class="gradient-text">taqvimi</span></h1>
+      <p class="lead mt-1" style="max-width:740px" data-reveal data-delay="2">
+        Seminarlar, konsertlar, sport musobaqalari va treninglar. Tadbirga oldindan yoziling —
+        joylar soni cheklangan.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="flex flex-wrap" style="gap:12px">
+        <div class="search-box">
+          <i data-ico="search"></i>
+          <input type="search" id="qSearch" placeholder="Tadbir nomi yoki joyi bo'yicha qidirish...">
+        </div>
+        <div class="flex" style="gap:8px">
+          <button class="btn btn--ghost btn--sm" id="viewList"><i data-ico="list"></i> Ro'yxat</button>
+          <button class="btn btn--soft btn--sm" id="viewGrid"><i data-ico="grid"></i> Kartochka</button>
+        </div>
+      </div>
+
+      <div class="filters mt-3" id="chips">
+        <button class="chip is-active" data-filter="all"><i data-ico="grid"></i>Barchasi</button>
+        <button class="chip" data-filter="t1"><i data-ico="palette"></i>San'at</button>
+        <button class="chip" data-filter="t2"><i data-ico="dumbbell"></i>Sport</button>
+        <button class="chip" data-filter="t3"><i data-ico="code"></i>IT</button>
+        <button class="chip" data-filter="t4"><i data-ico="book-heart"></i>Kitobxonlik</button>
+        <button class="chip" data-filter="t5"><i data-ico="woman-star"></i>Xotin-qizlar</button>
+      </div>
+
+      <div class="grid g-2" id="list"></div>
+      <div class="empty hide" id="empty"><i data-ico="calendar"></i><h3>Tadbir topilmadi</h3><p>Filtrni o'zgartirib ko'ring.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid" style="grid-template-columns:1fr .8fr;gap:24px;align-items:start">
+      <div class="panel" data-reveal="left">
+        <div class="panel__head"><i data-ico="ticket"></i><h3>Tadbirga yozilish qoidalari</h3></div>
+        <div class="panel__body">
+          <div class="stack">
+            <div class="alert alert--info"><i data-ico="info"></i><span>Tadbir boshlanishidan 2 soat oldin ro'yxatga olish yopiladi.</span></div>
+            <div class="alert alert--ok"><i data-ico="check-circle"></i><span>Qatnashganingiz QR-kod orqali tasdiqlanadi va reyting balliga qo'shiladi (+10 ball).</span></div>
+            <div class="alert alert--warn"><i data-ico="alert-circle"></i><span>Yozilib, sababsiz kelmagan talabaning keyingi 2 tadbirga yozilishi cheklanadi.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel" data-reveal="right" data-delay="1">
+        <div class="panel__head"><i data-ico="trending-up"></i><h3>Oylik faollik</h3></div>
+        <div class="panel__body">
+          <div class="stack">
+            <div><div class="flex-between small"><span>Sentabr</span><b>32 tadbir</b></div><div class="progress mt-1"><div class="progress__bar" data-progress="88"></div></div></div>
+            <div><div class="flex-between small"><span>Oktabr</span><b>27 tadbir</b></div><div class="progress mt-1"><div class="progress__bar" data-progress="72"></div></div></div>
+            <div><div class="flex-between small"><span>Noyabr</span><b>21 tadbir</b></div><div class="progress mt-1"><div class="progress__bar" data-progress="56"></div></div></div>
+            <div><div class="flex-between small"><span>Dekabr</span><b>18 tadbir</b></div><div class="progress mt-1"><div class="progress__bar" data-progress="46"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+var IMG = "../../assets/img/rasmlar/";
+var mode = "grid";
+
+function render() {
+  var list = document.getElementById("list");
+  list.className = mode === "grid" ? "grid g-2" : "stack";
+  list.innerHTML = DB.tadbirlar.map(function (e, i) {
+    var head = mode === "grid"
+      ? '<div class="contest-card__top" style="aspect-ratio:16/7"><img src="' + IMG + e.rasm + '" alt="">' +
+        '<div class="contest-card__tags"><span class="badge badge--t' + e.tema + '">' + e.tur + '</span></div></div>'
+      : "";
+    return '<article class="card card--hover" data-reveal data-delay="' + ((i % 6) + 1) + '"' +
+      ' data-tags="t' + e.tema + '" data-text="' + (e.nom + " " + e.joy + " " + e.tur).toLowerCase() + '">' +
+      head +
+      '<div class="event">' +
+        '<div class="event__date"><b>' + e.kun + '</b><span>' + e.oy + '</span></div>' +
+        '<div class="event__body">' +
+          (mode === "grid" ? "" : '<span class="badge badge--t' + e.tema + '">' + e.tur + '</span>') +
+          '<h3 class="mt-1">' + e.nom + '</h3>' +
+          '<div class="meta"><span><i data-ico="map-pin"></i>' + e.joy + '</span>' +
+          '<span><i data-ico="clock"></i>' + e.vaqt + '</span></div>' +
+        '</div>' +
+        '<button class="btn btn--soft btn--sm js-yozil" data-nom="' + e.nom + '">Yozilish</button>' +
+      '</div></article>';
+  }).join("");
+  Icons.render(list);
+  UI.initReveal(list);
+  UI.initFilter({ chips: "#chips .chip", items: "#list article", search: "#qSearch", empty: "#empty" });
+}
+
+UI.boot(render);
+
+document.getElementById("viewGrid").addEventListener("click", function () {
+  mode = "grid"; this.className = "btn btn--soft btn--sm";
+  document.getElementById("viewList").className = "btn btn--ghost btn--sm";
+  render();
+});
+document.getElementById("viewList").addEventListener("click", function () {
+  mode = "list"; this.className = "btn btn--soft btn--sm";
+  document.getElementById("viewGrid").className = "btn btn--ghost btn--sm";
+  render();
+});
+
+document.addEventListener("click", function (ev) {
+  var b = ev.target.closest(".js-yozil");
+  if (!b) return;
+  UI.toast("“" + b.getAttribute("data-nom") + "” tadbiriga yozildingiz!", "check-circle");
+  b.textContent = "Yozildingiz";
+  b.disabled = true;
+  b.style.opacity = ".6";
+});
+</script>
+</body>
+</html>

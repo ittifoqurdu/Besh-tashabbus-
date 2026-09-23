@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Elektron kutubxona: badiiy, ilmiy va o'quv adabiyotlari, audiokitoblar va taqrizlar.">
+<title>Kutubxona | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="kutubxona">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Kutubxona</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="book-open"></i> Axborot-resurs markazi</span>
+      <h1 class="mt-2" data-reveal data-delay="1">Elektron <span class="gradient-text">kutubxona</span></h1>
+      <p class="lead mt-1" style="max-width:720px" data-reveal data-delay="2">
+        24 500 dan ortiq nashr, audiokitoblar va ilmiy maqolalar. Kitob o'qing, taqriz yozing va
+        reyting balli to'plang.
+      </p>
+      <div class="grid g-4 mt-4">
+        <div class="stat" data-reveal data-delay="1"><span class="stat__icon"><i data-ico="book"></i></span><div class="stat__num"><span data-count="24500"></span></div><div class="stat__lbl">Kitob fondi</div></div>
+        <div class="stat" data-reveal data-delay="2"><span class="stat__icon"><i data-ico="users"></i></span><div class="stat__num"><span data-count="3120"></span></div><div class="stat__lbl">Faol kitobxon</div></div>
+        <div class="stat" data-reveal data-delay="3"><span class="stat__icon"><i data-ico="file-text"></i></span><div class="stat__num"><span data-count="1870"></span></div><div class="stat__lbl">Taqrizlar</div></div>
+        <div class="stat" data-reveal data-delay="4"><span class="stat__icon"><i data-ico="mic"></i></span><div class="stat__num"><span data-count="640"></span></div><div class="stat__lbl">Audiokitob</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="flex flex-wrap" style="gap:12px">
+        <div class="search-box"><i data-ico="search"></i>
+          <input type="search" id="qSearch" placeholder="Kitob nomi yoki muallif bo'yicha qidirish...">
+        </div>
+      </div>
+      <div class="filters mt-3" id="chips">
+        <button class="chip is-active" data-filter="all"><i data-ico="grid"></i>Barchasi</button>
+        <button class="chip" data-filter="badiiy"><i data-ico="book-heart"></i>Badiiy</button>
+        <button class="chip" data-filter="it"><i data-ico="code"></i>IT</button>
+        <button class="chip" data-filter="sport"><i data-ico="dumbbell"></i>Sport</button>
+        <button class="chip" data-filter="sanat"><i data-ico="palette"></i>San'at</button>
+      </div>
+      <div class="grid g-5" id="list"></div>
+      <div class="empty hide" id="empty"><i data-ico="book"></i><h3>Kitob topilmadi</h3><p>Qidiruv so'zini o'zgartiring.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid" style="grid-template-columns:1fr .85fr;gap:24px;align-items:start">
+      <div class="panel" data-reveal="left">
+        <div class="panel__head"><i data-ico="flame"></i><h3>Oyning eng faol kitobxonlari</h3></div>
+        <div class="panel__body" style="padding:0">
+          <div class="table-wrap" style="border:0">
+            <table class="tbl">
+              <thead><tr><th>#</th><th>Talaba</th><th>O'qilgan</th><th>Taqriz</th></tr></thead>
+              <tbody id="readers"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="panel" data-reveal="right" data-delay="1">
+        <div class="panel__head"><i data-ico="quote"></i><h3>Kitobxonlar klubi</h3></div>
+        <div class="panel__body stack">
+          <p class="small">Har oyning uchinchi payshanbasida kutubxonaning 3-qavatida munozara kechasi o'tkaziladi.</p>
+          <div class="alert alert--info"><i data-ico="calendar"></i><span>Keyingi uchrashuv: <b>15-oktabr, 17:00</b></span></div>
+          <div class="alert alert--ok"><i data-ico="award"></i><span>Taqriz yozgan har bir talabaga <b>+15 ball</b></span></div>
+          <button class="btn btn--primary btn--block" id="joinClub"><i data-ico="user-plus"></i> Klubga qo'shilish</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+  var TAG = { "Badiiy": "badiiy", "IT": "it", "Sport": "sport", "San'at": "sanat" };
+
+  document.getElementById("list").innerHTML = DB.kitoblar.map(function (k, i) {
+    return '<article class="book card card--pad card--hover" data-reveal data-delay="' + ((i % 6) + 1) + '"' +
+      ' data-tags="' + (TAG[k.turkum] || "") + '" data-text="' + (k.nom + " " + k.muallif + " " + k.turkum).toLowerCase() + '">' +
+      '<div class="book__cover"><img src="' + IMG + k.rasm + '" alt=""></div>' +
+      '<b>' + k.nom + '</b>' +
+      '<span>' + k.muallif + '</span>' +
+      '<div class="flex-between">' +
+        '<span class="badge">' + k.turkum + '</span>' +
+        '<span class="small flex" style="gap:4px;color:var(--t4)"><i data-ico="star"></i><b>' + k.reyting + '</b></span>' +
+      '</div>' +
+      '<div class="tiny muted">' + k.til + ' &middot; ' + k.yil + ' &middot; ' + k.sahifa + ' bet</div>' +
+      '<button class="btn btn--soft btn--sm js-oqish"><i data-ico="book-open"></i> O\'qish</button>' +
+    '</article>';
+  }).join("");
+
+  document.getElementById("readers").innerHTML = DB.reyting.slice(0, 6).map(function (r, i) {
+    return '<tr><td><span class="rank' + (i < 3 ? " rank--" + (i + 1) : "") + '">' + (i + 1) + '</span></td>' +
+      '<td><div class="user-cell"><img src="' + IMG + r.avatar + '" alt=""><span><b>' + r.ism + '</b><span>' + r.fak + '</span></span></div></td>' +
+      '<td><b>' + (28 - i * 3) + '</b> ta</td><td>' + (14 - i) + ' ta</td></tr>';
+  }).join("");
+});
+
+UI.initFilter({ chips: "#chips .chip", items: "#list article", search: "#qSearch", empty: "#empty" });
+
+document.addEventListener("click", function (e) {
+  if (e.target.closest(".js-oqish")) UI.toast("Kitob o'quvchi oynada ochiladi (demo)", "book-open");
+});
+document.getElementById("joinClub").addEventListener("click", function () {
+  UI.toast("Kitobxonlar klubiga arizangiz qabul qilindi!", "check-circle");
+});
+</script>
+</body>
+</html>

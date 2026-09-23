@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Urganch Davlat Universiteti va besh muhim tashabbus doirasidagi so'nggi yangiliklar.">
+<title>Yangiliklar | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="yangiliklar">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Yangiliklar</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="newspaper"></i> Matbuot xizmati</span>
+      <h1 class="mt-2" data-reveal data-delay="1">So'nggi <span class="gradient-text">yangiliklar</span></h1>
+      <p class="lead mt-1" style="max-width:720px" data-reveal data-delay="2">
+        Universitet hayoti, tanlov natijalari va tashabbuslar doirasidagi barcha muhim voqealar.
+      </p>
+    </div>
+  </section>
+
+  <!-- Asosiy yangilik -->
+  <section class="section--tight">
+    <div class="wrap" id="featured"></div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="flex flex-wrap" style="gap:12px">
+        <div class="search-box"><i data-ico="search"></i>
+          <input type="search" id="qSearch" placeholder="Yangilik qidirish...">
+        </div>
+      </div>
+      <div class="filters mt-3" id="chips">
+        <button class="chip is-active" data-filter="all"><i data-ico="grid"></i>Barchasi</button>
+        <button class="chip" data-filter="t1"><i data-ico="palette"></i>San'at</button>
+        <button class="chip" data-filter="t2"><i data-ico="dumbbell"></i>Sport</button>
+        <button class="chip" data-filter="t3"><i data-ico="code"></i>IT</button>
+        <button class="chip" data-filter="t4"><i data-ico="book-heart"></i>Kitobxonlik</button>
+        <button class="chip" data-filter="t5"><i data-ico="woman-star"></i>Xotin-qizlar</button>
+      </div>
+      <div class="grid g-3" id="list"></div>
+      <div class="empty hide" id="empty"><i data-ico="newspaper"></i><h3>Yangilik topilmadi</h3><p>Boshqa so'z bilan qidiring.</p></div>
+    </div>
+  </section>
+
+  <!-- Obuna -->
+  <section class="section">
+    <div class="wrap">
+      <div class="panel" data-reveal>
+        <div class="panel__body grid" style="grid-template-columns:1fr .9fr;gap:24px;align-items:center;padding:28px">
+          <div>
+            <span class="eyebrow"><i data-ico="bell"></i> Yangiliklar obunasi</span>
+            <h2 class="mt-2">Muhim e'lonlarni o'tkazib yubormang</h2>
+            <p class="lead mt-1">Email manzilingizni qoldiring — yangi tanlov va tadbirlar haqida birinchilardan bo'lib xabar topasiz.</p>
+          </div>
+          <form class="form" id="subForm">
+            <div class="field">
+              <label for="em">Email manzil <span class="req">*</span></label>
+              <input class="input" id="em" type="email" required placeholder="ism@urdu.uz">
+              <span class="field__err"></span>
+            </div>
+            <label class="check"><input type="checkbox" required> Shaxsiy ma'lumotlarni qayta ishlashga roziman</label>
+            <button class="btn btn--primary btn--block" type="submit"><i data-ico="send"></i> Obuna bo'lish</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+  var f = DB.yangiliklar[0];
+
+  document.getElementById("featured").innerHTML =
+    '<article class="card card--hover grid" style="grid-template-columns:1.15fr 1fr;overflow:hidden" data-reveal="zoom">' +
+      '<div style="position:relative;min-height:280px">' +
+        '<img src="' + IMG + f.rasm + '" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">' +
+      '</div>' +
+      '<div style="padding:clamp(20px,3vw,34px);display:flex;flex-direction:column;gap:12px;justify-content:center">' +
+        '<div class="flex"><span class="badge badge--t' + f.tema + '">' + f.bolim + '</span>' +
+        '<span class="badge">Asosiy yangilik</span></div>' +
+        '<h2>' + f.sarlavha + '</h2>' +
+        '<p class="lead">' + f.qisqa + '</p>' +
+        '<div class="flex flex-wrap small muted" style="gap:16px">' +
+          '<span class="flex" style="gap:5px"><i data-ico="clock"></i>' + f.sana + '</span>' +
+          '<span class="flex" style="gap:5px"><i data-ico="eye"></i>' + f.oqish + '</span>' +
+          '<span class="flex" style="gap:5px"><i data-ico="id-card"></i>' + f.muallif + '</span>' +
+        '</div>' +
+        '<a class="btn btn--primary mt-1" style="align-self:flex-start" href="maqola.html?id=' + f.id + '">To\'liq o\'qish <i data-ico="arrow-right"></i></a>' +
+      '</div>' +
+    '</article>';
+
+  document.getElementById("list").innerHTML = DB.yangiliklar.map(function (n, i) {
+    return '<article class="news-card" data-reveal data-delay="' + ((i % 6) + 1) + '"' +
+      ' data-tags="t' + n.tema + '" data-text="' + (n.sarlavha + " " + n.qisqa + " " + n.bolim).toLowerCase() + '">' +
+      '<a class="news-card__media" href="maqola.html?id=' + n.id + '">' +
+        '<img src="' + IMG + n.rasm + '" alt=""><span class="badge">' + n.bolim + '</span></a>' +
+      '<div class="news-card__body">' +
+        '<h3><a href="maqola.html?id=' + n.id + '">' + n.sarlavha + '</a></h3>' +
+        '<p>' + n.qisqa + '</p>' +
+        '<div class="news-card__foot">' +
+          '<span class="flex" style="gap:5px"><i data-ico="clock"></i>' + n.sana + '</span>' +
+          '<span class="flex" style="gap:5px"><i data-ico="eye"></i>' + n.oqish + '</span>' +
+        '</div>' +
+      '</div></article>';
+  }).join("");
+});
+
+UI.initFilter({ chips: "#chips .chip", items: "#list article", search: "#qSearch", empty: "#empty" });
+UI.initForm("#subForm", function (form) {
+  UI.toast("Obuna rasmiylashtirildi. Rahmat!", "check-circle");
+  form.reset();
+});
+</script>
+</body>
+</html>

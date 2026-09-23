@@ -1,0 +1,96 @@
+/* ============================================================
+   Animatsiyalar
+   ============================================================ */
+
+/* ---------- Keyframes ---------- */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:none}}
+@keyframes fadeRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+@keyframes shine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes ring{0%{transform:scale(.9);opacity:.7}70%{transform:scale(1.5);opacity:0}100%{opacity:0}}
+@keyframes toastIn{from{opacity:0;transform:translateX(40px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(40px) scale(.95)}}
+@keyframes gradientMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes blobMove{
+  0%,100%{transform:translate(0,0) scale(1)}
+  33%{transform:translate(28px,-22px) scale(1.08)}
+  66%{transform:translate(-22px,18px) scale(.94)}
+}
+@keyframes countPop{from{transform:scale(.86);opacity:.4}to{transform:none;opacity:1}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- Scroll-reveal ---------- */
+[data-reveal]{opacity:0;will-change:transform,opacity}
+/* Xavfsizlik to'ri: JS o'chirilgan bo'lsa kontent baribir ko'rinadi */
+@media (scripting:none){ [data-reveal]{opacity:1 !important;animation:none !important} }
+[data-reveal].is-in{opacity:1;animation:fadeUp .78s var(--ease) forwards}
+[data-reveal="left"].is-in{animation-name:fadeLeft}
+[data-reveal="right"].is-in{animation-name:fadeRight}
+[data-reveal="zoom"].is-in{animation-name:zoomIn}
+[data-reveal="fade"].is-in{animation-name:fadeIn}
+
+/* Ketma-ket (stagger) kechikish */
+[data-delay="1"]{animation-delay:.08s}
+[data-delay="2"]{animation-delay:.16s}
+[data-delay="3"]{animation-delay:.24s}
+[data-delay="4"]{animation-delay:.32s}
+[data-delay="5"]{animation-delay:.40s}
+[data-delay="6"]{animation-delay:.48s}
+
+/* ---------- Suzuvchi bezaklar ---------- */
+.float{animation:float 5.5s ease-in-out infinite}
+.float--slow{animation-duration:8s}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;animation:blobMove 15s ease-in-out infinite;pointer-events:none}
+.blob--1{width:320px;height:320px;background:rgba(26,99,68,.30);left:-80px;top:-60px}
+.blob--2{width:260px;height:260px;background:rgba(43,133,96,.24);right:-60px;top:120px;animation-delay:-4s}
+.blob--3{width:280px;height:280px;background:rgba(79,170,132,.22);left:40%;bottom:-120px;animation-delay:-8s}
+
+/* ---------- Yorqinlik effekti (skeleton/shine) ---------- */
+.shine{
+  background:linear-gradient(100deg,transparent 20%,rgba(255,255,255,.55) 50%,transparent 80%);
+  background-size:200% 100%;animation:shine 2.4s linear infinite;
+}
+
+/* ---------- Pulsatsiya halqasi ---------- */
+.ring-pulse{position:relative}
+.ring-pulse::before,.ring-pulse::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  border:2px solid var(--brand-500);animation:ring 2.4s ease-out infinite;
+}
+.ring-pulse::after{animation-delay:1.2s}
+
+/* ---------- Aylanuvchi gradient chegara ---------- */
+.anim-gradient{
+  background:linear-gradient(120deg,var(--brand-900),var(--brand-700),var(--brand-500),var(--brand-700),var(--brand-900));
+  background-size:300% 300%;animation:gradientMove 9s ease infinite;
+}
+
+/* ---------- Sonlar animatsiyasi ---------- */
+.counting{animation:countPop .5s var(--ease)}
+
+/* ---------- Marquee (yuguruvchi qator) ---------- */
+.marquee{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee__track{display:flex;gap:44px;width:max-content;animation:marquee 32s linear infinite}
+.marquee:hover .marquee__track{animation-play-state:paused}
+.marquee__item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:650;color:var(--muted);white-space:nowrap}
+.marquee__item .ico{width:18px;height:18px;color:var(--brand-500)}
+
+/* ---------- Sahifa yuklanishi ---------- */
+.page-enter{animation:fadeIn .5s var(--ease)}
+
+/* ---------- Hover ko'taruvchi ---------- */
+.lift{transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.lift:hover{transform:translateY(-5px);box-shadow:var(--sh-md)}
+
+/* ---------- Ikonka mikro-animatsiyasi ---------- */
+/* Standart ikonka o'lchami — aniq o'lcham berilmagan joylarda ikonka
+   brauzer standart bo'yicha juda katta (SVG'ning "width/height" atributi
+   yo'qligi sababli) chiqib ketmasligi uchun zaxira qiymat */
+.ico{width:20px;height:20px;stroke-width:1.9;flex:none}
+.ico-spin{animation:spinSlow 12s linear infinite}

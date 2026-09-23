@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Besh muhim tashabbus — Urganch Davlat Universiteti talabalari uchun ijtimoiy platforma. Tanlovlar, tadbirlar, kutubxona va ijodiy loyihalar bir joyda.">
+<title>Besh muhim tashabbus | Urganch Davlat Universiteti</title>
+<link rel="icon" href="assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/base.css?v=5">
+<link rel="stylesheet" href="assets/css/layout.css?v=5">
+<link rel="stylesheet" href="assets/css/components.css?v=5">
+<link rel="stylesheet" href="assets/css/animations.css?v=5">
+</head>
+<body data-root="" data-page="bosh">
+
+<div id="app-header"></div>
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="hero">
+    <div class="wrap hero__inner">
+
+      <div class="hero__text">
+        <h1 class="hero__title" data-reveal="left">
+          <span class="title-dark">BESH MUHIM</span>
+          <span class="title-soft">TASHABBUS <em>PLATFORMASI</em></span>
+        </h1>
+
+        <p class="lead hero__lead" data-reveal="left" data-delay="1">
+          Yoshlarning ma'naviy, intellektual, jismoniy va ijtimoiy faolligini oshirishga
+          qaratilgan besh muhim tashabbus doirasidagi barcha loyihalar, tanlovlar va
+          tadbirlar bir platformada!
+        </p>
+
+        <div class="hero__actions" data-reveal="left" data-delay="2">
+          <a class="btn btn--primary btn--lg" href="bolimlar/tashabbuslar/index.html">
+            <i data-ico="layers"></i> 5 tashabbus haqida
+          </a>
+          <button class="btn btn--ghost btn--lg" id="videoBtn" type="button">
+            <i data-ico="play"></i> Video taqdimot
+          </button>
+        </div>
+      </div>
+
+      <!-- O'ng tarafdagi aylanuvchi rasmlar -->
+      <div class="hero__media" data-reveal="right">
+        <div class="slider" id="heroSlider">
+          <div class="slider__track" id="heroTrack"></div>
+        </div>
+        <div class="slider__dots" id="heroDots"></div>
+        <button class="slider__nav slider__nav--prev" type="button" aria-label="Oldingi" data-slider="prev"><i data-ico="chevron-left"></i></button>
+        <button class="slider__nav slider__nav--next" type="button" aria-label="Keyingi" data-slider="next"><i data-ico="chevron-right"></i></button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= 5 TASHABBUS ================= -->
+  <section class="section--tight" id="tashabbuslar" style="padding-top:clamp(26px,4vw,42px)">
+    <div class="wrap">
+      <div class="init-grid" id="initGrid"></div>
+    </div>
+  </section>
+
+  <!-- ================= STATISTIKA + TANLOVLAR ================= -->
+  <section class="section--tight">
+    <div class="wrap grid grid--stretch" style="grid-template-columns:1.2fr 1fr">
+
+      <!-- Statistika -->
+      <div class="panel panel--col" data-reveal>
+        <div class="panel__head">
+          <i data-ico="trending-up"></i><h3>Platforma statistikasi</h3>
+          <a class="panel__more" href="bolimlar/statistika/index.html">Barchasi <i data-ico="chevron-right"></i></a>
+        </div>
+        <div class="panel__body panel__body--grow">
+          <div class="stat-grid" id="statGrid"></div>
+          <div class="cta-bar mt-3">
+            <span class="cta-bar__t"><i data-ico="star"></i> Faol ishtirok eting, bilim va ijodingizni namoyon eting, kelajagingizni yarating!</span>
+            <a class="btn btn--sm" href="bolimlar/auth/royxatdan-otish.html">Ishtirok etish <i data-ico="arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tanlovlar (eng oxirgi qo'shilganlar) -->
+      <div class="panel panel--col" data-reveal data-delay="1">
+        <div class="panel__head">
+          <i data-ico="trophy"></i><h3>Tanlovlar</h3>
+          <a class="panel__more" href="bolimlar/tanlovlar/index.html">Barchasi <i data-ico="chevron-right"></i></a>
+        </div>
+        <div class="panel__body panel__body--grow" style="padding:10px" id="newsMini"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= YUGURUVCHI QATOR ================= -->
+  <div class="wrap">
+    <div class="panel" style="padding:14px 0;overflow:hidden">
+      <div class="marquee"><div class="marquee__track" id="marquee"></div></div>
+    </div>
+  </div>
+
+  <!-- ================= YAQIN TADBIRLAR ================= -->
+  <section class="section">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-head__t" data-reveal>
+          <span class="eyebrow"><i data-ico="calendar-days"></i> Taqvim</span>
+          <h2 class="mt-1">Yaqin kunlardagi tadbirlar</h2>
+        </div>
+        <a class="link-arrow" href="bolimlar/tadbirlar/index.html" data-reveal>To'liq taqvim <i data-ico="arrow-right"></i></a>
+      </div>
+      <div class="grid g-2" id="eventMini"></div>
+    </div>
+  </section>
+
+  <!-- ================= REYTING ================= -->
+  <section class="section">
+    <div class="wrap grid" style="grid-template-columns:1.25fr .95fr;align-items:start">
+      <div data-reveal="left">
+        <span class="eyebrow"><i data-ico="medal"></i> Faollik reytingi</span>
+        <h2 class="mt-2">Oyning eng faol talabalari</h2>
+        <p class="lead mt-1">Tanlovlarda ishtirok, tadbirlarga qatnashish, kitob taqrizlari va volontyorlik uchun ball to'plang.</p>
+        <div class="table-wrap mt-3">
+          <table class="tbl">
+            <thead><tr><th>#</th><th>Talaba</th><th>Fakultet</th><th>Ball</th></tr></thead>
+            <tbody id="rankMini"></tbody>
+          </table>
+        </div>
+        <a class="btn btn--ghost mt-3" href="bolimlar/reytinglar/index.html"><i data-ico="bar-chart"></i> To'liq reytingni ko'rish</a>
+      </div>
+
+      <div class="panel" data-reveal="right" data-delay="1">
+        <div class="panel__head"><i data-ico="info"></i><h3>Ball qanday hisoblanadi?</h3></div>
+        <div class="panel__body">
+          <ul class="timeline">
+            <li><b>Tanlovda ishtirok — 20 ball</b><span>Har bir yuborilgan ijodiy ish uchun</span></li>
+            <li><b>G'oliblik — 100 ball</b><span>Sovrinli o'rin egallagan ishtirokchilarga</span></li>
+            <li><b>Tadbirda qatnashish — 10 ball</b><span>QR-kod orqali ro'yxatdan o'tilganda</span></li>
+            <li><b>Kitob taqrizi — 15 ball</b><span>Kutubxona bo'limida e'lon qilingan taqriz</span></li>
+            <li><b>Volontyorlik — 25 ball</b><span>Tadbir tashkil etishda ko'rsatilgan yordam</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="cta-banner" data-reveal="zoom">
+        <span class="eyebrow" style="background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28);color:#fff">
+          <i data-ico="rocket"></i> Hoziroq boshlang
+        </span>
+        <h2 class="mt-2">Iste'dodingizni namoyon etishga tayyormisiz?</h2>
+        <p>Platformada ro'yxatdan o'ting, o'zingizga mos tashabbusni tanlang va birinchi ijodiy ishingizni yuklang. Bu butunlay bepul.</p>
+        <div class="flex flex-wrap mt-3" style="justify-content:center">
+          <a class="btn btn--ghost btn--lg" href="bolimlar/auth/royxatdan-otish.html"><i data-ico="user-plus"></i> Ro'yxatdan o'tish</a>
+          <a class="btn btn--dark btn--lg" href="bolimlar/savollar/index.html"><i data-ico="info"></i> Savollar bormi?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div id="app-footer"></div>
+
+<script src="assets/js/icons.js?v=5"></script>
+<script src="assets/js/data.js?v=5"></script>
+<script src="assets/js/layout.js?v=5"></script>
+<script src="assets/js/ui.js?v=5"></script>
+<script src="assets/js/home.js?v=5"></script>
+</body>
+</html>

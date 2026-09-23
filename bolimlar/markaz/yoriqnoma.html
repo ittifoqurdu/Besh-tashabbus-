@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Talabalar uchun platformadan foydalanish yo'riqnomasi — ro'yxatdan o'tishdan sertifikat olishgacha.">
+<title>Yo'riqnoma | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="yoriqnoma">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Bosh sahifa</a><span class="sep">/</span>
+        <span>Markaz haqida</span><span class="sep">/</span><span>Yo'riqnoma</span>
+      </nav>
+      <span class="eyebrow" data-reveal><i data-ico="book-open"></i> Qadam-baqadam qo'llanma</span>
+      <h1 class="mt-2" data-reveal data-delay="1"><span class="title-dark">FOYDALANISH</span> <span class="title-soft">YO'RIQNOMASI</span></h1>
+      <p class="lead mt-1" style="max-width:700px" data-reveal data-delay="2">
+        Platformadan ro'yxatdan o'tishdan tortib sertifikat olishgacha bo'lgan barcha
+        bosqichlar shu yerda tushuntirilgan.
+      </p>
+      <button class="btn btn--ghost mt-3" id="dlBtn" data-reveal data-delay="3"><i data-ico="download"></i> PDF ko'rinishida yuklab olish</button>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid" style="grid-template-columns:1.2fr .8fr;gap:26px;align-items:start">
+
+      <div data-reveal="left">
+        <h2 class="mt-1">Ishtirok etish bosqichlari</h2>
+        <ul class="timeline mt-3">
+          <li><b>1. Ro'yxatdan o'ting</b><span>2 daqiqa</span><p>Talabalik ID raqamingiz, F.I.Sh, fakultet va telefon raqamingizni kiriting. Ariza fakultet tyutori tomonidan 1 ish kunida tasdiqlanadi.</p></li>
+          <li><b>2. Tashabbusni tanlang</b><span>1 daqiqa</span><p>Sizni qiziqtirgan tashabbus yoki to'garakka a'zo bo'ling — profilingizga moslashtirilgan takliflar ko'rsatiladi.</p></li>
+          <li><b>3. Tanlovga ariza topshiring</b><span>5 daqiqa</span><p>"Tanlovlar" bo'limidan mos tanlovni tanlang va "Ariza topshirish" tugmasini bosing.</p></li>
+          <li><b>4. Ijodiy ishingizni yuklang</b><span>10 daqiqa</span><p>Shaxsiy kabinet → "Ijodiy ishlarim" bo'limi orqali faylni yuklang (PDF, DOCX, JPG, PNG, MP4 — 50 MB gacha).</p></li>
+          <li><b>5. Natijani kuting</b><span>5–7 kun</span><p>Hakamlar hay'ati baholaydi, natija va izoh shaxsiy kabinetingizga yuboriladi.</p></li>
+          <li><b>6. Sertifikatingizni yuklab oling</b><span>darhol</span><p>G'olib yoki ishtirokchi sertifikati "Sertifikatlarim" bo'limida PDF ko'rinishida saqlanadi.</p></li>
+        </ul>
+      </div>
+
+      <aside class="stack" data-reveal="right" data-delay="1">
+        <div class="panel">
+          <div class="panel__head"><i data-ico="alert-circle"></i><h3>Diqqat qiling</h3></div>
+          <div class="panel__body stack">
+            <div class="alert alert--info"><i data-ico="info"></i><span>Har bir tanlovga faqat bitta ijodiy ish yuborish mumkin.</span></div>
+            <div class="alert alert--warn"><i data-ico="alert-circle"></i><span>Ariza tasdiqlanmaguncha tanlovlarda ishtirok eta olmaysiz.</span></div>
+            <div class="alert alert--ok"><i data-ico="check-circle"></i><span>Tadbirga QR-kod orqali ro'yxatdan o'tish reyting balliga qo'shiladi.</span></div>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel__head"><i data-ico="phone"></i><h3>Yordam kerakmi?</h3></div>
+          <div class="panel__body stack">
+            <p class="small">Qo'llab-quvvatlash xizmati ish kunlari 09:00–18:00 orasida javob beradi.</p>
+            <a class="btn btn--primary btn--block" href="../aloqa/index.html"><i data-ico="send"></i> Murojaat yuborish</a>
+            <a class="btn btn--ghost btn--block" href="../savollar/index.html"><i data-ico="info"></i> Ko'p beriladigan savollar</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot();
+document.getElementById("dlBtn").addEventListener("click", function () {
+  UI.toast("Yo'riqnoma PDF fayli tayyorlanmoqda...", "download");
+});
+</script>
+</body>
+</html>

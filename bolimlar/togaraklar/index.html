@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Universitet to'garaklari: san'at, sport, IT, kitobxonlik va tadbirkorlik yo'nalishlaridagi barcha to'garaklar.">
+<title>To'garaklar | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="togaraklar">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>To'garaklar</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="users"></i> 13 ta faoliyatdagi to'garak</span>
+      <h1 class="mt-2" data-reveal data-delay="1"><span class="title-dark">UNIVERSITET</span> <span class="title-soft">TO'GARAKLARI</span></h1>
+      <p class="lead mt-1" style="max-width:720px" data-reveal data-delay="2">
+        Besh muhim tashabbus doirasida faoliyat yurituvchi barcha to'garak va seksiyalar.
+        O'zingizga mos yo'nalishni tanlang va rahbariga murojaat qiling.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="flex flex-wrap" style="gap:12px">
+        <div class="search-box"><i data-ico="search"></i>
+          <input type="search" id="qSearch" placeholder="To'garak nomi yoki rahbari bo'yicha qidirish...">
+        </div>
+      </div>
+      <div class="filters mt-3" id="chips">
+        <button class="chip is-active" data-filter="all"><i data-ico="grid"></i>Barchasi</button>
+        <button class="chip" data-filter="t1"><i data-ico="palette"></i>San'at</button>
+        <button class="chip" data-filter="t2"><i data-ico="dumbbell"></i>Sport</button>
+        <button class="chip" data-filter="t3"><i data-ico="code"></i>IT</button>
+        <button class="chip" data-filter="t4"><i data-ico="book-heart"></i>Kitobxonlik</button>
+        <button class="chip" data-filter="t5"><i data-ico="woman-star"></i>Xotin-qizlar</button>
+      </div>
+
+      <div class="grid g-3" id="list"></div>
+      <div class="empty hide" id="empty"><i data-ico="users"></i><h3>To'garak topilmadi</h3><p>Boshqa filtr bilan urinib ko'ring.</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-banner" data-reveal="zoom">
+        <h2>O'zingizga mos to'garak topolmadingizmi?</h2>
+        <p>Yangi to'garak tashkil etish taklifi bilan "Yoshlar bilan ishlash" bo'limiga murojaat qiling.</p>
+        <div class="flex flex-wrap mt-3" style="justify-content:center">
+          <a class="btn btn--ghost btn--lg" href="../aloqa/index.html"><i data-ico="send"></i> Taklif yuborish</a>
+          <a class="btn btn--dark btn--lg" href="../tashabbuslar/index.html"><i data-ico="sparkles"></i> Besh tashabbus</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+  document.getElementById("list").innerHTML = DB.togaraklar.map(function (t, i) {
+    return '<article class="card card--hover contest-card" data-reveal data-delay="' + ((i % 6) + 1) + '"' +
+      ' data-tags="t' + t.tema + '" data-text="' + (t.nom + " " + t.rahbar).toLowerCase() + '">' +
+      '<div class="contest-card__top"><img src="' + IMG + t.rasm + '" alt="">' +
+        '<div class="contest-card__tags"><span class="badge badge--t' + t.tema + '">' + t.azo + ' a\'zo</span></div>' +
+      '</div>' +
+      '<div class="contest-card__body">' +
+        '<h3>' + t.nom + '</h3>' +
+        '<p class="small muted">' + t.tavsif + '</p>' +
+        '<div class="contest-card__meta">' +
+          '<span><i data-ico="id-card"></i>' + t.rahbar + '</span>' +
+          '<span><i data-ico="map-pin"></i>' + t.joy + '</span>' +
+          '<span><i data-ico="clock"></i>' + t.kun + '</span>' +
+        '</div>' +
+        '<button class="btn btn--soft btn--sm mt-1 js-yozil" data-nom="' + t.nom + '">A\'zo bo\'lish <i data-ico="arrow-right"></i></button>' +
+      '</div></article>';
+  }).join("");
+});
+
+UI.initFilter({ chips: "#chips .chip", items: "#list article", search: "#qSearch", empty: "#empty" });
+
+document.addEventListener("click", function (e) {
+  var b = e.target.closest(".js-yozil");
+  if (!b) return;
+  UI.toast("“" + b.getAttribute("data-nom") + "” to'garagiga arizangiz qabul qilindi!", "check-circle");
+  b.textContent = "Ariza yuborildi";
+  b.disabled = true;
+  b.style.opacity = ".6";
+});
+</script>
+</body>
+</html>

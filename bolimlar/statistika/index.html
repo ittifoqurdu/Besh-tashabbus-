@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Platforma statistikasi: talabalar faolligi, tashabbuslar bo'yicha ko'rsatkichlar va oylik dinamika.">
+<title>Statistika | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="statistika">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Statistika</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="trending-up"></i> 2026 yil, avgust holatiga</span>
+      <h1 class="mt-2" data-reveal data-delay="1"><span class="title-dark">PLATFORMA</span> <span class="title-soft">STATISTIKASI</span></h1>
+      <p class="lead mt-1" style="max-width:720px" data-reveal data-delay="2">
+        Besh muhim tashabbus doirasidagi faoliyat ko'rsatkichlari, talabalar qamrovi va
+        yo'nalishlar bo'yicha taqsimot.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="stat-grid" id="statGrid"></div>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid" style="grid-template-columns:1.1fr .9fr;gap:24px;align-items:start">
+
+      <div class="panel" data-reveal="left">
+        <div class="panel__head"><i data-ico="bar-chart"></i><h3>Oylik faollik dinamikasi</h3></div>
+        <div class="panel__body">
+          <div class="chart" id="chart"></div>
+          <p class="tiny muted mt-2">Har oyda ro'yxatdan o'tgan ishtirokchilar soni (nafar).</p>
+        </div>
+      </div>
+
+      <div class="panel" data-reveal="right" data-delay="1">
+        <div class="panel__head"><i data-ico="layers"></i><h3>Tashabbuslar bo'yicha ulush</h3></div>
+        <div class="panel__body stack" id="share"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid" style="grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+
+      <div class="panel" data-reveal>
+        <div class="panel__head"><i data-ico="graduation-cap"></i><h3>Fakultetlar kesimida</h3></div>
+        <div class="panel__body" style="padding:0">
+          <div class="table-wrap" style="border:0">
+            <table class="tbl">
+              <thead><tr><th>Fakultet</th><th>A'zolar</th><th>Faol</th><th>Qamrov</th></tr></thead>
+              <tbody id="faks"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" data-reveal data-delay="1">
+        <div class="panel__head"><i data-ico="target"></i><h3>Yillik maqsadlar</h3></div>
+        <div class="panel__body stack" id="goals"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta-banner" data-reveal="zoom">
+        <h2>Ma'lumotlar har kuni yangilanadi</h2>
+        <p>Ko'rsatkichlar shaxsiy kabinetlardagi faoliyat, tanlov arizalari va tadbir QR-belgilanishlari asosida avtomatik hisoblanadi.</p>
+        <div class="flex flex-wrap mt-3" style="justify-content:center">
+          <a class="btn btn--ghost btn--lg" href="../reytinglar/index.html"><i data-ico="medal"></i> Reytinglar</a>
+          <a class="btn btn--dark btn--lg" href="../aloqa/index.html"><i data-ico="send"></i> Hisobot so'rash</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+var OYLAR = [
+  { oy: "Yan", n: 620 }, { oy: "Fev", n: 780 }, { oy: "Mar", n: 940 },
+  { oy: "Apr", n: 1180 }, { oy: "May", n: 1420 }, { oy: "Iyn", n: 890 },
+  { oy: "Iyl", n: 760 }, { oy: "Avg", n: 1310 }
+];
+var FAK = [
+  { nom: "Filologiya fakulteti", azo: 1840, faol: 1420 },
+  { nom: "Axborot texnologiyalari", azo: 1720, faol: 1390 },
+  { nom: "Xorijiy tillar", azo: 1510, faol: 1105 },
+  { nom: "Pedagogika", azo: 1460, faol: 1002 },
+  { nom: "Fizika-matematika", azo: 1290, faol: 870 },
+  { nom: "Iqtisodiyot", azo: 1180, faol: 742 },
+  { nom: "Tarix fakulteti", azo: 980, faol: 610 },
+  { nom: "Kimyo-biologiya", azo: 940, faol: 583 }
+];
+var GOALS = [
+  { nom: "15 000 talabani qamrab olish", foiz: 83, izoh: "12 458 / 15 000" },
+  { nom: "60 ta tanlov o'tkazish", foiz: 80, izoh: "48 / 60" },
+  { nom: "150 ta tadbir tashkil etish", foiz: 84, izoh: "126 / 150" },
+  { nom: "3 000 sertifikat topshirish", foiz: 73, izoh: "2 180 / 3 000" },
+  { nom: "100 startap loyiha", foiz: 58, izoh: "58 / 100" }
+];
+
+UI.boot(function () {
+  /* Umumiy ko'rsatkichlar */
+  document.getElementById("statGrid").innerHTML = DB.statistika.map(function (s, i) {
+    return '<div class="stat" data-reveal data-delay="' + (i + 1) + '">' +
+      '<span class="stat__icon"><i data-ico="' + s.icon + '"></i></span>' +
+      '<div class="stat__num"><span data-count="' + s.n + '"></span></div>' +
+      '<div class="stat__lbl">' + s.l + '</div></div>';
+  }).join("");
+
+  /* Ustunli diagramma */
+  var max = Math.max.apply(null, OYLAR.map(function (o) { return o.n; }));
+  document.getElementById("chart").innerHTML = OYLAR.map(function (o) {
+    return '<div class="chart__col" title="' + o.n + ' nafar">' +
+      '<span class="chart__val">' + o.n + '</span>' +
+      '<span class="chart__track"><span class="chart__bar" data-h="' + Math.round(o.n / max * 100) + '"></span></span>' +
+      '<span class="chart__lbl">' + o.oy + '</span></div>';
+  }).join("");
+
+  /* Tashabbuslar ulushi */
+  var jami = DB.tashabbuslar.length;
+  var ulush = [32, 26, 21, 14, 7];
+  document.getElementById("share").innerHTML = DB.tashabbuslar.map(function (t, i) {
+    return '<div>' +
+      '<div class="flex-between small"><span class="flex" style="gap:8px">' +
+      '<span class="init-card__art" style="font-size:18px;letter-spacing:-3px">' + t.emoji + '</span>' + t.nom + '</span>' +
+      '<b>' + ulush[i] + '%</b></div>' +
+      '<div class="progress mt-1"><div class="progress__bar" data-progress="' + ulush[i] * 3 + '" style="background:var(--t' + t.tema + ')"></div></div>' +
+      '</div>';
+  }).join("");
+
+  /* Fakultetlar jadvali */
+  document.getElementById("faks").innerHTML = FAK.map(function (f) {
+    var p = Math.round(f.faol / f.azo * 100);
+    return '<tr><td><b>' + f.nom + '</b></td><td>' + f.azo.toLocaleString("ru-RU") + '</td>' +
+      '<td>' + f.faol.toLocaleString("ru-RU") + '</td>' +
+      '<td style="min-width:130px"><div class="flex" style="gap:9px"><div class="progress" style="flex:1">' +
+      '<div class="progress__bar" data-progress="' + p + '"></div></div><b class="small">' + p + '%</b></div></td></tr>';
+  }).join("");
+
+  /* Maqsadlar */
+  document.getElementById("goals").innerHTML = GOALS.map(function (g) {
+    return '<div><div class="flex-between small"><span>' + g.nom + '</span><b>' + g.izoh + '</b></div>' +
+      '<div class="progress mt-1"><div class="progress__bar" data-progress="' + g.foiz + '"></div></div></div>';
+  }).join("");
+});
+
+/* Diagramma ustunlarini animatsiya bilan ko'tarish */
+(function () {
+  var cols = document.querySelectorAll(".chart__bar");
+  var io = new IntersectionObserver(function (en) {
+    en.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.style.height = e.target.getAttribute("data-h") + "%";
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: .3 });
+  cols.forEach(function (c) { io.observe(c); });
+})();
+</script>
+</body>
+</html>

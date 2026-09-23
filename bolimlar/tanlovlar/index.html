@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Universitet talabalari uchun ochiq tanlovlar: ijodiy, sport, IT, kitobxonlik va tadbirkorlik yo'nalishlari.">
+<title>Tanlovlar | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="tanlovlar">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb"><a href="../../index.html">Bosh sahifa</a><span class="sep">/</span><span>Tanlovlar</span></nav>
+      <span class="eyebrow" data-reveal><i data-ico="trophy"></i> 48 ta tanlov, 8 tasi hozir ochiq</span>
+      <h1 class="mt-2" data-reveal data-delay="1">Tanlovlar va <span class="gradient-text">musobaqalar</span></h1>
+      <p class="lead mt-1" style="max-width:740px" data-reveal data-delay="2">
+        O'zingizga mos yo'nalishni tanlang, ijodiy ishingizni yuklang va sovrinli o'rinlar uchun kurashing.
+        Barcha tanlovlar talabalar uchun bepul.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap">
+      <div class="flex flex-wrap mt-1" style="gap:12px">
+        <div class="search-box">
+          <i data-ico="search"></i>
+          <input type="search" id="qSearch" placeholder="Tanlov nomi bo'yicha qidirish...">
+        </div>
+      </div>
+      <div class="filters mt-3" id="chips">
+        <button class="chip is-active" data-filter="all"><i data-ico="grid"></i>Barchasi</button>
+        <button class="chip" data-filter="t1"><i data-ico="palette"></i>San'at</button>
+        <button class="chip" data-filter="t2"><i data-ico="dumbbell"></i>Sport</button>
+        <button class="chip" data-filter="t3"><i data-ico="code"></i>IT</button>
+        <button class="chip" data-filter="t4"><i data-ico="book-heart"></i>Kitobxonlik</button>
+        <button class="chip" data-filter="t5"><i data-ico="woman-star"></i>Xotin-qizlar</button>
+        <button class="chip" data-filter="ochiq"><i data-ico="check-circle"></i>Faqat ochiq</button>
+      </div>
+
+      <div class="grid g-3" id="list"></div>
+
+      <div class="empty hide" id="empty">
+        <i data-ico="search"></i>
+        <h3>Hech narsa topilmadi</h3>
+        <p>Boshqa kalit so'z yoki filtr bilan urinib ko'ring.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="panel" data-reveal>
+        <div class="panel__head"><i data-ico="info"></i><h3>Ishtirok etish tartibi</h3></div>
+        <div class="panel__body">
+          <ul class="timeline">
+            <li><b>1. Ro'yxatdan o'ting</b><p>Talabalik ID raqamingiz bilan platformaga a'zo bo'ling.</p></li>
+            <li><b>2. Tanlovni tanlang</b><p>Yo'nalish va topshirish muddatiga e'tibor bering.</p></li>
+            <li><b>3. Ishingizni yuklang</b><p>Kabinetdagi "Ijodiy ishlarim" bo'limi orqali fayl yuklang (50 MB gacha).</p></li>
+            <li><b>4. Natijani kuting</b><p>Hakamlar bahosi va sertifikat kabinetingizga yuklanadi.</p></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+
+  document.getElementById("list").innerHTML = DB.tanlovlar.map(function (t, i) {
+    var tags = "t" + t.tema + (t.holat !== "yopiq" ? " ochiq" : "");
+    var holat = t.holat === "yopiq" ? '<span class="badge">Yakunlangan</span>'
+              : t.holat === "davom" ? '<span class="badge badge--live">Davom etmoqda</span>'
+              : '<span class="badge badge--ok">Ochiq</span>';
+    return '<article class="card card--hover contest-card" id="' + t.id + '" data-reveal data-delay="' + ((i % 6) + 1) + '"' +
+      ' data-tags="' + tags + '" data-text="' + (t.nom + " " + t.yonalish + " " + t.qisqa).toLowerCase() + '">' +
+      '<div class="contest-card__top"><img src="' + IMG + t.rasm + '" alt="">' +
+        '<div class="contest-card__tags"><span class="badge badge--t' + t.tema + '">' + t.yonalish + '</span>' + holat + '</div>' +
+      '</div>' +
+      '<div class="contest-card__body">' +
+        '<h3>' + t.nom + '</h3>' +
+        '<p class="small muted">' + t.qisqa + '</p>' +
+        '<div class="contest-card__meta">' +
+          '<span><i data-ico="clock"></i>' + t.muddat + '</span>' +
+          '<span><i data-ico="users"></i>' + t.ishtirokchi + '</span>' +
+          '<span><i data-ico="gift"></i>' + t.sovrin + '</span>' +
+        '</div>' +
+        '<div class="progress"><div class="progress__bar" data-progress="' + t.foiz + '"></div></div>' +
+        '<span class="tiny muted">Joylar to\'ldirilgan: ' + t.foiz + '%</span>' +
+        (t.holat === "yopiq"
+          ? '<button class="btn btn--sm btn--soft mt-1" disabled style="opacity:.55;cursor:not-allowed">Qabul yopilgan</button>'
+          : '<button class="btn btn--primary btn--sm mt-1 js-ariza" data-nom="' + t.nom + '">Ariza topshirish <i data-ico="send"></i></button>') +
+      '</div></article>';
+  }).join("");
+});
+
+/* Filtr va ariza tugmalari */
+UI.initFilter({ chips: "#chips .chip", items: "#list article", search: "#qSearch", empty: "#empty" });
+
+document.addEventListener("click", function (e) {
+  var b = e.target.closest(".js-ariza");
+  if (!b) return;
+  UI.toast("“" + b.getAttribute("data-nom") + "” tanloviga ariza qabul qilindi!", "check-circle");
+  b.innerHTML = "Ariza yuborildi";
+  b.classList.remove("btn--primary");
+  b.classList.add("btn--soft");
+  b.disabled = true;
+});
+</script>
+</body>
+</html>

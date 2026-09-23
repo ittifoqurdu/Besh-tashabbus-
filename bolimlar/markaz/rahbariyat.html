@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Urganch Davlat Universiteti rahbariyati: rektor va prorektorlar haqida ma'lumot.">
+<title>Rahbariyat | Besh muhim tashabbus</title>
+<link rel="icon" href="../../assets/img/logo/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css?v=5">
+<link rel="stylesheet" href="../../assets/css/layout.css?v=5">
+<link rel="stylesheet" href="../../assets/css/components.css?v=5">
+<link rel="stylesheet" href="../../assets/css/animations.css?v=5">
+</head>
+<body data-root="../../" data-page="rahbariyat">
+
+<div id="app-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap page-hero__inner">
+      <nav class="breadcrumb">
+        <a href="../../index.html">Bosh sahifa</a><span class="sep">/</span>
+        <span>Markaz haqida</span><span class="sep">/</span><span>Rahbariyat</span>
+      </nav>
+      <span class="eyebrow" data-reveal><i data-ico="id-card"></i> Universitet boshqaruvi</span>
+      <h1 class="mt-2" data-reveal data-delay="1"><span class="title-dark">UNIVERSITET</span> <span class="title-soft">RAHBARIYATI</span></h1>
+      <p class="lead mt-1" style="max-width:700px" data-reveal data-delay="2">
+        Urganch Davlat Universitetining rektorat tarkibi va yo'nalishlar bo'yicha mas'ul shaxslar.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--tight">
+    <div class="wrap grid g-3" id="list"></div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="panel" data-reveal>
+        <div class="panel__head"><i data-ico="phone"></i><h3>Qabulxona</h3></div>
+        <div class="panel__body">
+          <p class="small">Rektor va prorektorlar qabuliga yozilish uchun qabulxonaga murojaat qiling.</p>
+          <div class="grid g-3 mt-2">
+            <div class="contact-item"><span class="contact-item__ico"><i data-ico="phone"></i></span><span><b>Telefon</b><span>+998 (62) 224-67-70</span></span></div>
+            <div class="contact-item"><span class="contact-item__ico"><i data-ico="mail"></i></span><span><b>Email</b><span>rektor@urdu.uz</span></span></div>
+            <div class="contact-item"><span class="contact-item__ico"><i data-ico="clock"></i></span><span><b>Qabul kunlari</b><span>Dushanba, Chorshanba 14:00–17:00</span></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="app-footer"></div>
+
+<script src="../../assets/js/icons.js?v=5"></script>
+<script src="../../assets/js/data.js?v=5"></script>
+<script src="../../assets/js/layout.js?v=5"></script>
+<script src="../../assets/js/ui.js?v=5"></script>
+<script>
+UI.boot(function () {
+  var IMG = "../../assets/img/rasmlar/";
+  document.getElementById("list").innerHTML = DB.rahbariyat.map(function (r, i) {
+    return '<article class="card card--pad card--hover center" data-reveal data-delay="' + ((i % 6) + 1) + '">' +
+      '<img src="' + IMG + r.avatar + '" alt="" style="width:88px;height:88px;border-radius:50%;margin:0 auto 14px;border:3px solid var(--brand-50)">' +
+      '<h3>' + r.ism + '</h3>' +
+      '<span class="badge badge--t3 mt-1">' + r.lavozim + '</span>' +
+      '<p class="small muted mt-2">' + r.fak + '</p>' +
+      '<div class="stack mt-2" style="gap:8px;text-align:left">' +
+        '<span class="flex small" style="gap:8px"><i data-ico="phone" data-size="15" style="color:var(--brand-600)"></i>' + r.tel + '</span>' +
+        '<span class="flex small" style="gap:8px"><i data-ico="mail" data-size="15" style="color:var(--brand-600)"></i>' + r.email + '</span>' +
+      '</div>' +
+    '</article>';
+  }).join("");
+});
+</script>
+</body>
+</html>
