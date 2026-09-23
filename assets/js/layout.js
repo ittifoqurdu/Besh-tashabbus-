@@ -33,7 +33,6 @@
     { id: "tadbirlar",   nom: "Tadbirlar",       icon: "calendar",   href: "bolimlar/tadbirlar/index.html" },
     { id: "yangiliklar", nom: "Yangiliklar",     icon: "newspaper",  href: "bolimlar/yangiliklar/index.html" },
     { id: "statistika",  nom: "Statistika",      icon: "bar-chart",  href: "bolimlar/statistika/index.html" },
-    { id: "kabinet",     nom: "Shaxsiy kabinet", icon: "id-card",    href: "bolimlar/kabinet/index.html" },
     { id: "savollar",    nom: "Savol-javob",     icon: "info",       href: "bolimlar/savollar/index.html" }
   ];
 
@@ -92,8 +91,6 @@
 
         '<div class="header-actions">' +
           '<button class="icon-btn" id="searchOpen" type="button" aria-label="Qidirish" title="Qidirish"><i data-ico="search"></i></button>' +
-          '<a class="btn btn--ghost btn--sm" href="' + url("bolimlar/auth/kirish.html") + '"><i data-ico="log-in"></i>Kirish</a>' +
-          '<a class="btn btn--primary btn--sm hide-xs" href="' + url("bolimlar/auth/royxatdan-otish.html") + '"><i data-ico="user-plus"></i>Ro\'yxatdan o\'tish</a>' +
           '<button class="burger" id="burger" type="button" aria-label="Menyu"><span></span><span></span><span></span></button>' +
         "</div>" +
 
@@ -105,10 +102,6 @@
       EXTRA.map(function (m) {
         return '<a class="nav__link' + (m.id === PAGE ? " is-active" : "") + '" href="' + url(m.href) + '"><i data-ico="' + m.icon + '"></i>' + m.nom + "</a>";
       }).join("") +
-      '<div class="mobile-nav__cta">' +
-        '<a class="btn btn--ghost" href="' + url("bolimlar/auth/kirish.html") + '"><i data-ico="log-in"></i>Kirish</a>' +
-        '<a class="btn btn--primary" href="' + url("bolimlar/auth/royxatdan-otish.html") + '"><i data-ico="user-plus"></i>Ro\'yxat</a>' +
-      "</div>" +
     "</div>" +
 
     /* Qidiruv oynasi */
@@ -136,7 +129,7 @@
 
     var links2 = EXTRA.map(function (m) {
       return '<a href="' + url(m.href) + '">' + m.nom + "</a>";
-    }).join("") + '<a href="' + url("bolimlar/auth/royxatdan-otish.html") + '">Ro\'yxatdan o\'tish</a>';
+    }).join("");
 
     return "" +
     '<footer class="site-footer">' +

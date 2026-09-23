@@ -72,7 +72,6 @@
 .dropdown a.is-active .ico{color:var(--brand-700)}
 
 .header-actions{display:flex;align-items:center;gap:9px;flex:none}
-/* Kirish / Ro'yxatdan o'tish tugmalari — ortiqcha soyasiz, tekis ko'rinish */
 .header-actions .btn{box-shadow:none}
 .header-actions .btn:hover{box-shadow:none}
 .icon-btn{
@@ -130,8 +129,6 @@
   .brand__logo{height:36px}
 }
 @media (max-width:1160px){ .nav{display:none} .burger{display:block} }
-/* Qidiruv, Kirish tugmasi va burger doim ko'rinadi; faqat "Ro'yxatdan o'tish"
-   matnli tugma juda tor ekranda joy tejash uchun yashiriladi */
 @media (max-width:560px){ .hide-xs{display:none !important} }
 @media (max-width:420px){ .brand__logo{height:32px} }
 
@@ -168,8 +165,7 @@
    ustiga chiqmaydi (ikkita mustaqil koordinata tizimini moslashtirishga
    urinishning o'rniga, brauzerning o'ziga hisoblatamiz). Rasmning o'ng
    chegarasi grid ustunining o'ng chegarasi bo'lgani uchun avtomatik ravishda
-   sarlavhadagi "Ro'yxatdan o'tish" tugmasi va pastdagi 5-karta bilan bir xil
-   chiziqqa tushadi — .wrap konteyneri ham xuddi shu chegarada tugaydi. */
+   pastdagi 5-karta bilan bir xil chiziqqa tushadi — .wrap konteyneri ham xuddi shu chegarada tugaydi. */
 .hero{
   position:relative;overflow:hidden;
   padding:clamp(18px,2.4vw,28px) 0 clamp(20px,2.8vw,32px);

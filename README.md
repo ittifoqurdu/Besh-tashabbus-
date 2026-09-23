@@ -63,10 +63,6 @@ beshtashabbus/
     ├── kutubxona/index.html        # Kitoblar, kitobxonlar reytingi
     ├── statistika/index.html       # Diagramma, ulushlar, fakultet kesimi
     ├── aloqa/index.html            # Kontaktlar + murojaat formasi
-    ├── auth/
-    │   ├── kirish.html
-    │   └── royxatdan-otish.html
-    ├── kabinet/index.html          # Ijodiy ishlar, sertifikatlar, arizalar
     ├── reytinglar/index.html       # TOP-3, talabalar va fakultetlar reytingi
     └── savollar/index.html         # FAQ akkordeon
 ```
@@ -74,7 +70,7 @@ beshtashabbus/
 **Asosiy menyu** (`assets/js/layout.js` dagi `MENU` massivi): Bosh sahifa,
 Markaz haqida (ochiluvchi: Rahbariyat / Nizom / Yo'riqnoma / Besh tashabbus),
 To'garaklar, Tanlovlar, Reyting, Kutubxona, Aloqa. Tadbirlar, Yangiliklar,
-Statistika, Shaxsiy kabinet va Savol-javob sahifalari alohida menyu bandi
+Statistika va Savol-javob sahifalari alohida menyu bandi
 sifatida ko'rsatilmaydi, lekin footer, tezkor havolalar va qidiruv orqali
 to'liq ochiq turadi (`EXTRA` massivi).
 
@@ -91,10 +87,10 @@ to'liq ochiq turadi (`EXTRA` massivi).
 | Ustunli diagramma (animatsiyali) | Statistika |
 | Faqat kunduzgi rejim — tungi rejim ataylab yo'q | Barcha sahifalar |
 | Scroll-reveal animatsiyalari, ketma-ket kechikish | Barcha sahifalar |
-| Raqamlar sanog'i (counter) va progress-barlar | Bosh sahifa, kabinet |
+| Raqamlar sanog'i (counter) va progress-barlar | Bosh sahifa, statistika |
 | Yuguruvchi qator (marquee) | Bosh sahifa |
 | Jonli filtr + qidiruv | Tanlovlar, tadbirlar, yangiliklar, kutubxona, FAQ, reytinglar |
-| Forma tekshiruvi (email, tel, parol mosligi) | Aloqa, kirish, ro'yxat |
+| Forma tekshiruvi (email, tel) | Aloqa |
 | Toast bildirishnomalari | Barcha sahifalar |
 | Akkordeon | Savol-javob |
 | Skroll progress chizig'i, "yuqoriga" tugmasi | Barcha sahifalar |

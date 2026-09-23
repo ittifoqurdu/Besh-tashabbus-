@@ -122,7 +122,7 @@
       sarlavha: "IT StartUp loyihalari tanlovi qabul bosqichi davom etmoqda",
       sana: "24.05.2024", muallif: "IT markaz", oqish: "5 daqiqa",
       qisqa: "Eng yaxshi uchta loyiha 30 mln so'mgacha grant va IT-Park rezidentligi imkoniyatini qo'lga kiritadi.",
-      matn: "Loyihalar g'oyaning yangiligi, texnik yechim sifati, bozor salohiyati va jamoa tayyorgarligi mezonlari bo'yicha baholanadi. Ariza topshirish uchun platformada ro'yxatdan o'ting va loyiha taqdimotini yuklang."
+      matn: "Loyihalar g'oyaning yangiligi, texnik yechim sifati, bozor salohiyati va jamoa tayyorgarligi mezonlari bo'yicha baholanadi. Ariza topshirish uchun tanlov sahifasi orqali loyiha taqdimotini yuboring."
     },
     {
       id: "n4", tema: 4, bolim: "Kitobxonlik", rasm: "news-4.svg",
@@ -237,21 +237,20 @@
   DB.tezkor = [
     { icon: "trophy", nom: "Tanlovlarda ishtirok etish", href: "bolimlar/tanlovlar/index.html" },
     { icon: "calendar-days", nom: "Tadbirlar taqvimi", href: "bolimlar/tadbirlar/index.html" },
-    { icon: "file-text", nom: "Ijodiy ishlarim", href: "bolimlar/kabinet/index.html#ishlar" },
-    { icon: "award", nom: "Sertifikatlarim", href: "bolimlar/kabinet/index.html#sertifikatlar" },
+    { icon: "users", nom: "To'garaklar ro'yxati", href: "bolimlar/togaraklar/index.html" },
+    { icon: "book-open", nom: "Elektron kutubxona", href: "bolimlar/kutubxona/index.html" },
     { icon: "bar-chart", nom: "Reytinglar", href: "bolimlar/reytinglar/index.html" },
     { icon: "info", nom: "Ko'p beriladigan savollar", href: "bolimlar/savollar/index.html" }
   ];
 
   /* ---------- FAQ ---------- */
   DB.savollar = [
-    { s: "Platformada qanday ro'yxatdan o'taman?", j: "Yuqori o'ng burchakdagi “Ro'yxatdan o'tish” tugmasini bosing, talabalik ID raqamingiz, F.I.Sh, fakultet va telefon raqamingizni kiriting. Ariza fakultet tyutori tomonidan 1 ish kunida tasdiqlanadi." },
+    { s: "Tanlovlarda qanday ishtirok etaman?", j: "“Tanlovlar” bo'limiga kiring, o'zingizga qiziq tanlovni tanlang va “Ariza topshirish” tugmasini bosing. Ishtirok etish mutlaqo bepul." },
     { s: "Tanlovda ishtirok etish uchun to'lov talab qilinadimi?", j: "Yo'q. Platformadagi barcha tanlov va tadbirlar universitet talabalari uchun mutlaqo bepul." },
-    { s: "Ijodiy ishimni qanday yuklayman?", j: "Shaxsiy kabinetga kiring → “Ijodiy ishlarim” bo'limi → “Yangi ish qo'shish”. Fayl hajmi 50 MB gacha, PDF, DOCX, JPG, PNG, MP4 formatlari qabul qilinadi." },
-    { s: "Sertifikat qachon beriladi?", j: "Tanlov yakunlangach 5 ish kuni ichida elektron sertifikat kabinetingizga yuklanadi. Uni PDF ko'rinishida yuklab olishingiz mumkin." },
+    { s: "Ijodiy ishlarni qanday topshirish mumkin?", j: "Tanlov talablariga mos ravishda faylingizni ariza orqali yoki fakultetingizdagi ma'sul tyutor orqali topshirishingiz mumkin." },
+    { s: "G'oliblarga sertifikat qachon beriladi?", j: "Tanlov yakunlangach hakamlar hay'ati baholash xulosasiga ko'ra g'olib va ishtirokchilarga rasmiy sertifikatlar taqdim etiladi." },
     { s: "Reyting ballari qanday hisoblanadi?", j: "Har bir faoliyat turi uchun ball beriladi: tanlovda ishtirok – 20 ball, g'oliblik – 100 ball, tadbirda qatnashish – 10 ball, kitob taqrizi – 15 ball, volontyorlik – 25 ball." },
     { s: "Bir vaqtda nechta tanlovda qatnasha olaman?", j: "Cheklov yo'q. Ammo har bir tanlovga faqat bitta ijodiy ish yuborish mumkin." },
-    { s: "Parolimni unutdim, nima qilay?", j: "Kirish sahifasidagi “Parolni unutdingizmi?” havolasini bosing va ro'yxatdan o'tgan telefon raqamingizni kiriting – SMS orqali tiklash kodi yuboriladi." },
     { s: "Texnik muammo yuzasidan kimga murojaat qilaman?", j: "“Aloqa” bo'limi orqali xabar qoldiring yoki qo'llab-quvvatlash xizmatiga qo'ng'iroq qiling: +998 (62) 224-67-70." }
   ];
 

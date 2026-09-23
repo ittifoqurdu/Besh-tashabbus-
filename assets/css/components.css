@@ -296,39 +296,7 @@ table.tbl tbody tr:last-child td{border-bottom:0}
 .alert--info{background:var(--brand-50);color:var(--brand-700)}
 .alert--warn{background:var(--t4-soft);color:#b45309}
 
-/* ---------- Auth sahifasi ---------- */
-.auth{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 74px)}
-.auth__side{
-  position:relative;overflow:hidden;padding:clamp(30px,5vw,58px);
-  display:flex;flex-direction:column;justify-content:center;gap:18px;color:#fff;
-  background:linear-gradient(150deg,var(--brand-900),var(--brand-700) 55%,var(--brand-500));
-}
-.auth__side::before{content:"";position:absolute;inset:0;background:url("../img/logo/naqsh.svg") repeat;background-size:110px;opacity:.16;filter:brightness(4)}
-.auth__side > *{position:relative;z-index:1}
-.auth__side h2{color:#fff}
-.auth__side p{color:rgba(255,255,255,.82)}
-.auth__list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
-.auth__list li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:rgba(255,255,255,.9)}
-.auth__list .ico{width:20px;height:20px;flex:none;color:#a7f3d0}
-.auth__form{display:flex;align-items:center;justify-content:center;padding:clamp(26px,5vw,54px)}
-.auth__form-inner{width:100%;max-width:420px}
-@media (max-width:920px){ .auth{grid-template-columns:1fr} .auth__side{min-height:auto;padding:34px var(--pad)} }
 
-/* ---------- Kabinet ---------- */
-.dash{display:grid;grid-template-columns:250px 1fr;gap:24px;align-items:start}
-.dash > *{min-width:0}
-@media (max-width:900px){.dash{grid-template-columns:1fr}}
-.side-menu{position:sticky;top:96px;display:flex;flex-direction:column;gap:4px;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
-@media (max-width:900px){.side-menu{position:static;flex-direction:row;overflow-x:auto}}
-.side-menu a{display:flex;align-items:center;gap:10px;padding:11px 13px;border-radius:var(--r-sm);font-size:14px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:all .28s var(--ease)}
-.side-menu a .ico{width:17px;height:17px;color:var(--muted)}
-.side-menu a:hover{background:var(--surface-2);color:var(--brand-600)}
-.side-menu a.is-active{background:var(--brand-600);color:#fff}
-.side-menu a.is-active .ico{color:#fff}
-
-.profile-head{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.profile-head img{width:78px;height:78px;border-radius:50%;border:3px solid var(--surface);box-shadow:var(--sh-md)}
-.profile-head h2{font-size:23px}
 
 /* ---------- Timeline ---------- */
 .timeline{position:relative;padding-left:32px}
